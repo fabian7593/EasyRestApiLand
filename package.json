@@ -1,0 +1,29 @@
+{
+  "name": "easyrestapiland",
+  "version": "1.0.0",
+  "description": "A node js and express js project that increases the development speed of rest apis backends by 30 or 40% includes document management, logs, users and roles, sending emails, among others.",
+  "main": "index.js",
+   "scripts": {
+    "dev": "ts-node-dev src/index.ts",
+    "mail": "ts-node-dev src/indexSendMail.ts",
+    "connection": "ts-node-dev src/indexdbconnection.ts",
+    "compile": "tsc",
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1619.0",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mariadb": "^3.3.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.13",
+    "typescript": "^5.4.5"
+  }
+}
