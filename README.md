@@ -20,6 +20,8 @@ We need to install necessary packages to use this framework.
 * npm init -y
 * npm install express axios dotenv aws-sdk cors mariadb nodemailer jsonwebtoken multer
 * npm install typescript
+* npm install ts-node-dev --save-dev
+
 
 Then add into package.json script, this code -> 
 ```bash
