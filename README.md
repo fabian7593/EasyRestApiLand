@@ -1,7 +1,7 @@
 [![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png)](https://github.com/fabian7593/EasyRestApiLand)
 
 # Easy RestApi Land
-A node js and express js project that increases the development speed of rest apis backends by 30 or 40% includes document management, logs, users and roles, sending emails, among others.
+A node js with typescript and express js project that increases the development speed of rest apis backends by 30 or 40% includes document management, logs, users and roles, sending emails, among others.
 <br>
 <br>
 # Contents
