@@ -24,6 +24,10 @@ INSERT INTO role_functionallity (role_code, func_type, function_code, screen_cod
 INSERT INTO role_functionallity (role_code, func_type, function_code, screen_code, description) VALUES 
 ('ADMIN', 'R', 'USER_LOGIN', null, null),
 ('ADMIN', 'R', 'USER_GET_BY_ID', null, null),
+('ADMIN', 'C', 'USERS_CREATE', null, 'Create user'),
+('ADMIN', 'R', 'USERS_READ', null, 'Read user'),
+('ADMIN', 'U', 'USERS_UPDATE', null, 'Update user'),
+('ADMIN', 'D', 'USERS_DELETE', null, 'Delete user'),
 ('ADMIN', 'C', 'UDC_CREATE', null, null),
 ('ADMIN', 'U', 'UDC_UPDATE', null, null),
 ('ADMIN', 'D', 'UDC_DELETE', null, null),

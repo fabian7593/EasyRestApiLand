@@ -108,7 +108,8 @@ CREATE TABLE `user_notifications` (
     FOREIGN KEY (`notification_code`) REFERENCES `notifications` (`code`),
     FOREIGN KEY (`id_user_send`) REFERENCES `users` (`id`),
     FOREIGN KEY (`id_user_receive`) REFERENCES `users` (`id`)
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 
 
@@ -183,4 +184,5 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `user_id` VARCHAR(200) DEFAULT NULL,
   `app_guid` VARCHAR(200) DEFAULT NULL,
   `environment` VARCHAR(200) DEFAULT NULL
-);
+) ENGINE = InnoDB
+DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
