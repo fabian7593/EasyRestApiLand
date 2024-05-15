@@ -49,6 +49,9 @@ Then add into package.json script, this code ->
 * npm i --save-dev @‌types/multer
 * npm install mariadb @‌types/mariadb -D
 * npm i --save-dev @types/nodemailer
+* npm install typeorm reflect-metadata
+* npm install @types/node --save-dev
+
 
 ## Run Scripting
 * Run the sql files in order on your MariaDb or MySQL.
@@ -60,6 +63,10 @@ Then add into package.json script, this code ->
   * https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js
 * Run
   * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "" -e mysql -o ./models_type_orm
+ 
+## Set settings of application into .env file 
+We use AWS Bucket
+
 
 ## RUN
 * npm run dev
