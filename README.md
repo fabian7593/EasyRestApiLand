@@ -9,12 +9,15 @@ A node js with typescript and express js project that increases the development 
 
 ## Getting Started
 We need to install necessary packages to use this framework.
+## Install Node
 * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 * nvm install 20.5.0
 * nvm use 20.5.0
 * nvm alias default 20.5.0
 * node -v
 * npm --version - 6.14.4
+  
+## Create Project and Install packages
 * mkdir myproject
 * cd myproject
 * npm init -y
@@ -38,6 +41,7 @@ Then add into package.json script, this code ->
 ## Compile
 * npm run compile -- --init
 * change your tsconfig.json with this one.
+  * https://github.com/fabian7593/EasyRestApiLand/blob/main/tsconfig.json
 
 ## Install packages typescript
 * npm install @‌types/express -D
@@ -45,6 +49,24 @@ Then add into package.json script, this code ->
 * npm i --save-dev @‌types/multer
 * npm install mariadb @‌types/mariadb -D
 * npm i --save-dev @types/nodemailer
+* npm install typeorm reflect-metadata
+* npm install @types/node --save-dev
+
+
+## Run Scripting
+* Run the sql files in order on your MariaDb or MySQL.
+  * https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting
+* Install these libraries
+   * npm install -g typeorm@0.2.34
+   * npm install -g typeorm-model-generator@0.4.6
+* Copy File ormConfig in the root of the project
+  * https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js
+* Run
+  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "" -e mysql -o ./models_type_orm
+ 
+## Set settings of application into .env file 
+We use AWS Bucket
+
 
 ## RUN
 * npm run dev
