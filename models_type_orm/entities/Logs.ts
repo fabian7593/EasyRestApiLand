@@ -12,16 +12,16 @@ export class Logs {
   class: string;
 
   @Column("varchar", { name: "type", nullable: true, length: 40 })
-  type: string | null;
+  type?: string | null;
 
   @Column("int", { name: "https", nullable: true })
-  https: number | null;
+  https?: number | null;
 
   @Column("varchar", { name: "message", length: 800 })
   message: string;
 
   @Column("varchar", { name: "description", nullable: true, length: 400 })
-  description: string | null;
+  description?: string | null;
 
   @Column("datetime", {
     name: "created_date",
@@ -31,7 +31,7 @@ export class Logs {
   createdDate: Date | null;
 
   @Column("varchar", { name: "user_id", nullable: true, length: 200 })
-  userId: string | null;
+  userId?: string | null;
 
   @Column("varchar", { name: "app_guid", nullable: true, length: 200 })
   appGuid: string | null;
