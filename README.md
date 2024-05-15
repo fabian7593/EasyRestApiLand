@@ -51,6 +51,8 @@ Then add into package.json script, this code ->
 * npm i --save-dev @types/nodemailer
 * npm install typeorm reflect-metadata
 * npm install @types/node --save-dev
+* npm i --save-dev @types/nodemailer
+* npm i --save-dev @types/multer
 
 
 ## Run Scripting
