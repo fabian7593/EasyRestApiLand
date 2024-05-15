@@ -55,7 +55,7 @@ Then add into package.json script, this code ->
 
 ## Run Scripting
 * Run the sql files in order on your MariaDb or MySQL.
-* https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting
+  * https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting
 * Install these libraries
    * npm install -g typeorm@0.2.34
    * npm install -g typeorm-model-generator@0.4.6
