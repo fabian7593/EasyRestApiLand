@@ -24,6 +24,7 @@ We need to install necessary packages to use this framework.
 * npm install express axios dotenv aws-sdk cors mariadb nodemailer jsonwebtoken multer
 * npm install typescript
 * npm install ts-node-dev --save-dev
+* npm install mysql --save
 
 
 Then add into package.json script, this code -> 
