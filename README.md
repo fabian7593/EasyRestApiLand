@@ -46,6 +46,7 @@ This is a lit manually "framework" for do rest apis backend, with the CRUD metho
   * Email Management: Some requests for send emails fast and easy (in this example with gmail).
   * Error Management: This project has a strong structure of error management.
   * Validations: A lot of important validations like required fields, regular expressions, and others.
+  * Microservices: You have the possibillity to modify the code easly and set all of those functionallities on separate microservices.
 
   
 <br>
@@ -120,6 +121,91 @@ Then add into package.json script, this code ->
 
 ## Set settings of application into .env file 
 This file is so important to the correct working of the endpoints.
+I upload an example of .env here ->
+https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt
+
+```bash
+# Company information 
+COMPANY_NAME="Easy Rest Api Land"
+
+# This logo is for show into the emails 
+COMPANY_LOGO=https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png
+
+# These are the subjects for register and forgot password
+COMPANY_REGISTER_SUBJECT="Account Verification"
+COMPANY_FORGOT_PASS_SUBJECT="Forgot Password"
+
+#This is the host for confirmation register, I recomended to set the url of the backend project
+COMPANY_HOST="http://localhost:3000/"
+
+# This is for build the url for vefiry forgot password
+COMPANY_FRONT_END_HOST="http://localhost:3000/"
+COMPANY_RESET_PASS_FRONT_END_URL="password_reset/"
+
+#This is the color of the emails titles
+COMPANY_MAIN_COLOR="#055D00"
+
+# this is the domain of the email logo
+COMPANY_DOMAIN="https://www.example.com"
+
+#This is the security api key if the endpoints require this, in the header you need to set -> x-api-key
+COMPANY_SECRET_API_KEY="8170fcb2-ef45-4173-8a37-f682d38ddae9"
+#If this variable is 1, the endpoints validate the x-api-key
+COMPANY_HAS_SECRET_API_KEY=0
+
+#This is the port of this server node backend
+SERVER_PORT=3000
+
+#DB Information on connection string
+DB_PORT=3307
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD=""
+DB_NAME="easy_api_land_db"
+DB_CONNECTION_LIMIT=150
+
+#JWT - All of JWT Tokens of login, refresh, forgot password and register token.
+JWT_EXPIRE=30000s
+JWT_SECRET_KEY=f749b45a-06e9-4ba1-a842-630184b443f6
+
+#JWT REFRESH TOKEN
+JWT_REFRESH_EXPIRE=1d
+JWT_REFRESH_SECRET_KEY=44e7d167-fd16-41f4-9e48-e6218fbf0a41
+
+#JWT forgot password
+JWT_FORGOT_PASSWORD_EXPIRE=900s
+JWT_FORGOT_PASSWORD_TOKEN=f749b45a-35a1-77ty-12we-630184b443f6
+
+#JWT Register Token
+JWT_REGISTER_TOKEN=44fr2167-1oi8-55ht-3ew1-630184b443f6
+
+
+#Password Salt
+SALT=550e8400e29b41d4a716446655412345
+
+#Is debugging active, not validate the regular expressions and show all console logs.
+IS_DEBUGGING=0
+
+# General Settings
+# This settings is the max numbers of fail logins, and page size by default if not set it on url params.
+FAIL_LOGIN_MAX_NUMBER=3
+PAGE_SIZE=3000
+PAGE_OFFSET=1
+
+
+# AWS S3 File Storage Information
+BUCKET_NAME="bucket-name"
+BUCKET_REGION="us-east-2"
+#configure IAM AWS
+ACCESS_KEY="AKIAZQ3DRSPRNUX12345"
+SECRET_ACCESS_KEY=""
+
+# Emails information - This information is for node mailer
+EMAIL_SERVICE=gmail
+EMAIL_AUTH_USER="test@gmail.com"
+EMAIL_AUTH_PASSWORD="test_password"
+EMAIL_FROM="test@gmail.com"
+```
 
 <br>
 <br>
