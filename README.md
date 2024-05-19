@@ -213,4 +213,7 @@ EMAIL_FROM="test@gmail.com"
 ## RUN
 * npm run dev
 
+## POST MAN
+
+
 
