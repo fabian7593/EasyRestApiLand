@@ -6,7 +6,7 @@ And gives us the most important and basic parts of developing a backend applicat
 
 This project use some design patterns like generics, builder, repository, dependency injection, and others and some of the SOLID principles.
 
-As well the project have a multiparadigm programming with function and POO oriented, with the result of FOOP (Function-Oriented and Object-Oriented Programming).
+As well the project have a multiparadigm programming with Function oriented and POO oriented as well, with the result of FOOP (Function-Oriented and Object-Oriented Programming).
 
 This is a lit manually "framework" for do rest apis backend, with the CRUD methods mainly.
 
