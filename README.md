@@ -213,7 +213,56 @@ EMAIL_FROM="test@gmail.com"
 ## RUN
 * npm run dev
 
+
+<br>
+
+# Important information
+
+First you need to understand the structure or the responses.
+All the responses have the same body information in JSON:
+
+* Status: is an object with id and message, this status id is not the HTTP status, is just an specific id.
+* Message: represents the action, for example Unauthorized, Error, Warning, etc.
+* Data: Is the important body information from backend response.
+* Info: A simple string with more information related the response.
+
+
+```bash
+{
+    "status": {
+        "id": 1,
+        "message": "Success"
+    },
+    "data": {  },
+    "info": "Login Successful"
+}
+```
+
+
+## Json Files Messages
+The system have some files with message configuration, for any specific response, message text and others.
+You can see it on this route -> https://github.com/fabian7593/EasyRestApiLand/tree/main/json
+
+* errorDBList.json: This has some errors from db, with the respective error number, code and message that you need to show on the response.
+* messages.json: This is the list of messages for sent in info response, depends response.
+* regex.json: This is the list of regular expression and the respective messages if the rule is not followed. (It only works if IS_DEBUGGING=0 in .env file).
+* statusResponse.json: This is the list of status object response, with the respective id, name and http status.
+
+
+## Email Templates
+This is some email templates for any important phases of the app, for example, register email, active account page and forgot password email.
+As well a generic template email for send emails from the application.
+You can see it on this route -> https://github.com/fabian7593/EasyRestApiLand/tree/main/email_templates
+
+<br>
+
+# How to run the existing Endpoints?
+
 ## POST MAN
+Import the postman collection file to test the current endpoints
+https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land.postman_collection.json
+
+Structure: 
 
 
 
