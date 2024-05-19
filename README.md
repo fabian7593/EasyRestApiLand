@@ -1,13 +1,53 @@
 [![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png)](https://github.com/fabian7593/EasyRestApiLand)
 
 # Easy RestApi Land
-A node js with typescript and express js project that increases the development speed of rest apis backends by 30 or 40% includes document management, logs, users and roles, sending emails, among others.
+This projetc is a RestApi project written on node js with typescript and express js. That Project increases the development speed of rest apis backends by 30 or 40%.
+
+This project use some design patterns like generics, builder, repository, dependency injection, and others and some of the SOLID principles.
+As well the project have a multiparadigm programming with function and POO oriented, with the result of FOOP (Function-Oriented and Object-Oriented Programming).
+
+This is a lit manually "framework" for do rest apis backend, with the CRUD methods mainly.
+
+## The project contains:
+
+* Logic of User and roles
+  * Register
+  * CRUD Users
+  * Roles by functionallities
+  * Roles by Screens
+  * Login
+  * Password Reset / Forgot Password
+  * Activate User by email Verification
+    
+* Security to validate on each request
+  * JWT / User login
+  * Refresh token
+  * Api key on authorization
+  * Roles validation by user
+    
+* Notifications
+  * Notifications management
+  * Send notification of all users of the app
+  * Posibillity to send emails when send notifications
+    
+* Documents
+  * Document management with AWS S3
+  * Logic to save, update and delete files on AWS S3.
+  * Get file by code, and obtain the specific URL to access file.
+
+* Another things
+  * Easy Fast Structure: An Structure to create any CRUD of any tables of DB, with just 2 files and less than 300 lines of code.
+  * UDC (Unit Dynamic Central):
+      This is the important information to show on drop down list, checklist, or another types of information, for config or for fill the other tables.
+      For example the list of countries, in db, or list of currencies or phones codes, or anything that you need as miscellaneous information.
+  * Logs: This is a table for save all the logs on the apps, with important information like platform, ip, method and class, and anothers.
+  * Email Management: Some requests for send emails.
+
+  
 <br>
-<br>
-# Contents
 <br>
 
-## Getting Started
+# Getting Started
 We need to install necessary packages to use this framework.
 ## Install Node
 * curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -17,7 +57,7 @@ We need to install necessary packages to use this framework.
 * node -v
 * npm --version - 6.14.4
   
-## Create Project and Install packages
+## Create Project and Install some necessary packages
 * mkdir myproject
 * cd myproject
 * npm init -y
@@ -44,7 +84,7 @@ Then add into package.json script, this code ->
 * change your tsconfig.json with this one.
   * https://github.com/fabian7593/EasyRestApiLand/blob/main/tsconfig.json
 
-## Install packages typescript
+## Install typescript packages
 * npm install @‌types/express -D
 * npm install @‌types/cors -D
 * npm i --save-dev @‌types/multer
@@ -54,7 +94,6 @@ Then add into package.json script, this code ->
 * npm install @types/node --save-dev
 * npm i --save-dev @types/nodemailer
 * npm i --save-dev @types/multer
-
 
 ## Run Scripting
 * Run the sql files in order on your MariaDb or MySQL.
