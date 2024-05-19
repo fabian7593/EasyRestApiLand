@@ -2,8 +2,10 @@
 
 # Easy RestApi Land
 This projetc is a RestApi project written on node js with typescript and express js. That Project increases the development speed of rest apis backends by 30 or 40%.
+And gives us the most important and basic parts of developing a backend application.
 
 This project use some design patterns like generics, builder, repository, dependency injection, and others and some of the SOLID principles.
+
 As well the project have a multiparadigm programming with function and POO oriented, with the result of FOOP (Function-Oriented and Object-Oriented Programming).
 
 This is a lit manually "framework" for do rest apis backend, with the CRUD methods mainly.
@@ -36,12 +38,14 @@ This is a lit manually "framework" for do rest apis backend, with the CRUD metho
   * Get file by code, and obtain the specific URL to access file.
 
 * Another things
-  * Easy Fast Structure: An Structure to create any CRUD of any tables of DB, with just 2 files and less than 300 lines of code.
+  * Easy Fast Structure: An Structure to create a complete CRUD of any tables of DB, with just 2 files and less than 300 lines of code.
   * UDC (Unit Dynamic Central):
       This is the important information to show on drop down list, checklist, or another types of information, for config or for fill the other tables.
       For example the list of countries, in db, or list of currencies or phones codes, or anything that you need as miscellaneous information.
   * Logs: This is a table for save all the logs on the apps, with important information like platform, ip, method and class, and anothers.
-  * Email Management: Some requests for send emails.
+  * Email Management: Some requests for send emails fast and easy (in this example with gmail).
+  * Error Management: This project has a strong structure of error management.
+  * Validations: A lot of important validations like required fields, regular expressions, and others.
 
   
 <br>
@@ -95,7 +99,11 @@ Then add into package.json script, this code ->
 * npm i --save-dev @types/nodemailer
 * npm i --save-dev @types/multer
 
-## Run Scripting
+
+<br>
+<br>
+
+## Run SQL Scripting
 * Run the sql files in order on your MariaDb or MySQL.
   * https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting
 * Install these libraries
@@ -105,10 +113,16 @@ Then add into package.json script, this code ->
   * https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js
 * Run
   * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "" -e mysql -o ./models_type_orm
- 
-## Set settings of application into .env file 
-We use AWS Bucket
 
+<br>
+<br>
+
+
+## Set settings of application into .env file 
+This file is so important to the correct working of the endpoints.
+
+<br>
+<br>
 
 ## RUN
 * npm run dev
