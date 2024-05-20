@@ -67,3 +67,9 @@ INSERT INTO role_functionallity (role_code, func_type, function_code, screen_cod
 ('ADMIN', 'U', 'LOG_UPDATE',  null, null),
 ('ADMIN', 'D', 'LOG_DELETE',  null, null),
 ('ADMIN', 'R', 'LOG_READ', null, null);
+
+
+
+
+
+

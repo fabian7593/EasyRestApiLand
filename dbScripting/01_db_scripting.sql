@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `units_dynamic_central` (
     `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     `code` VARCHAR(100) NOT NULL UNIQUE,
     `name` VARCHAR(100) NOT NULL,
-    `type` ENUM('PROJECT_TYPE', 'PROJECT_CATEGORY', 'PROJECT_STATUS'),
+    `type` ENUM('PROJECT_TYPE', 'PROJECT_CATEGORY', 'INDUSTRY_TYPE'),
     `description` VARCHAR(400) DEFAULT NULL,
     `value1` VARCHAR(300) NOT NULL, # value selected on DROP down
     `value2` VARCHAR(300) DEFAULT NULL, # value in another language
@@ -186,3 +186,6 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `environment` VARCHAR(200) DEFAULT NULL
 ) ENGINE = InnoDB
 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+

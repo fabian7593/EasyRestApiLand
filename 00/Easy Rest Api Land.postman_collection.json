@@ -49,7 +49,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQxMTM0MDksImV4cCI6MTcxNDE0MzQwOX0.LsfPBcFgC_cC35af6Om16Ukhbn25NaMa8ABbrYFJgzo",
+								"value": "{{auth_jwt}}",
 								"type": "text"
 							}
 						],
@@ -88,18 +88,24 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljcjJAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzEzNDIyODI3LCJleHAiOjE3MTM0NTI4Mjd9.eGsUbkOr_4hIDEoI9fecCkH_jclBN32ZuriUT-mVdwk",
+								"value": "{{auth_jwt}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{host}}/udc/get",
+							"raw": "{{host}}/udc/get?id=2",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"udc",
 								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -115,7 +121,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQxMTE0ODEsImV4cCI6MTcxNDE0MTQ4MX0.nFw12HdYTIev9_QxJXG9fSDVb2-Ltpk321y-QBAVASU",
+								"value": "{{auth_jwt}}",
 								"type": "text"
 							}
 						],
@@ -158,7 +164,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQxMTM0MDksImV4cCI6MTcxNDE0MzQwOX0.LsfPBcFgC_cC35af6Om16Ukhbn25NaMa8ABbrYFJgzo",
+								"value": "{{auth_jwt}}",
 								"type": "text"
 							}
 						],
@@ -1418,6 +1424,198 @@
 							"path": [
 								"log",
 								"get_by_filters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Insert Manufacture",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth_jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Example Manufacturer\",\r\n    \"city\": \"Example City\",\r\n    \"address\": \"1234 Example St\",\r\n    \"country_iso_code\": \"US\",\r\n    \"email\": \"info@example.com\",\r\n    \"state\": \"Example State\",\r\n    \"zip_code\": \"12345\",\r\n    \"phone\": \"123-456-7890\",\r\n    \"website\": \"http://www.example.com\",\r\n    \"industry_type\": \"TECHNOLOGY\",\r\n    \"notes\": \"Leading manufacturer in tech industry\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/manufacture/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"manufacture",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Manufacture",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth_jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Clusteqweqeqwr\",\r\n        \"type\": \"PROJECT_TYPE\",\r\n        \"description\": \"Proyecto Cluster prueba\",\r\n        \"value1\": \"valor_del_value1\",\r\n        \"value2\": \"valor_del_value2\",\r\n        \"value3\": \"valor_del_value3\",\r\n        \"value4\": \"valor_del_value4\",\r\n        \"value5\": \"valor_del_value5\",\r\n        \"created_date\": \"2024-04-26T06:36:09.000Z\",\r\n        \"updated_date\": null,\r\n        \"user_id\": 2\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/manufacture/edit?id=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"manufacture",
+								"edit"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get manufacture By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth_jwt}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/manufacture/get?id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"manufacture",
+								"get"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get manufacture",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth_jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"card_id\": 7777,\r\n  \"email\": \"limelandcompanycr1@gmail.com\",\r\n  \"password\": \"limelandcompanycr1\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/manufacture/get_all?page=1&size=3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"manufacture",
+								"get_all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete manufacture",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{auth_jwt}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"card_id\": 7777,\r\n  \"email\": \"limelandcompanycr1@gmail.com\",\r\n  \"password\": \"limelandcompanycr1\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/manufacture/delete?id=2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"manufacture",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
 							]
 						}
 					},

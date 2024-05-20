@@ -72,6 +72,11 @@ export default class Validations{
                         !this.req.body.message) {
                         hasRequiredFields = false;
                     }
+                }else if(validateEndPoint == "MANUFACTURE_CREATE"){
+
+                    if (!this.req.body.name || !this.req.body.industry_type) {
+                        hasRequiredFields = false;
+                    }
                 }
             }
     

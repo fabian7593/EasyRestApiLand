@@ -4,10 +4,11 @@ import bodyParser from 'body-parser';
 import userRouter from './Entities/users/UserRouter';
 import udcRouter from './Entities/udcs/UdcRouter';
 import emailRouter from './Entities/emails/EmailRouter';
-import notificationRouter from './Entities/notifications/NotificationRoute'
-import userNotificationRouter from './Entities/notifications/UserNotificationRoute'
-import DocumentRoute from './Entities/documents/DocumentRoute'
-import LogRoute from './Entities/logs/LogsRoute'
+import notificationRouter from './Entities/notifications/NotificationRoute';
+import userNotificationRouter from './Entities/notifications/UserNotificationRoute';
+import DocumentRouter from './Entities/documents/DocumentRoute';
+import LogRouter from './Entities/logs/LogsRoute';
+import ManufactureRouter from './Entities/test/ManufactureRouter';
 
 import {debuggingMessage} from './Utils/logsUtils';
 import "reflect-metadata";
@@ -28,11 +29,12 @@ app.use(StartMiddleware);
 //Add Routers
 app.use(userRouter);
 app.use(udcRouter);
-app.use(DocumentRoute);
+app.use(DocumentRouter);
 app.use(emailRouter);
 app.use(notificationRouter);
 app.use(userNotificationRouter);
-app.use(LogRoute);
+app.use(LogRouter);
+app.use(ManufactureRouter);
 
 //Open port and listen API
 const PORT = process.env.SERVER_PORT || 3000;

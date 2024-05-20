@@ -25,9 +25,9 @@ export class UnitsDynamicCentral {
   @Column("enum", {
     name: "type",
     nullable: true,
-    enum: ["PROJECT_TYPE", "PROJECT_CATEGORY", "PROJECT_STATUS"],
+    enum: ["PROJECT_TYPE", "PROJECT_CATEGORY", "INDUSTRY_TYPE"],
   })
-  type: "PROJECT_TYPE" | "PROJECT_CATEGORY" | "PROJECT_STATUS" | null;
+  type: "PROJECT_TYPE" | "PROJECT_CATEGORY" | "INDUSTRY_TYPE" | null;
 
   @Column("varchar", { name: "description", nullable: true, length: 400 })
   description: string | null;
