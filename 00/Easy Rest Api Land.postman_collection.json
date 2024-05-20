@@ -319,13 +319,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/refresh_token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQxMTM3NzcsImV4cCI6MTcxNDIwMDE3N30.cqmb9_nxLOGqh0EdPR9bN9cdumQC548JPGUHBMRWqak",
+									"raw": "{{host}}/refresh_token/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJmYWJpYW43NTkzQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjE0NDc3MCwiZXhwIjoxNzE2MjMxMTcwfQ.tLWrps5Mr0gxCqIxoIWIegiLbXVZ9d9ejWLbwgyvdHE",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"refresh_token",
-										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJsaW1lbGFuZGNvbXBhbnljckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTQxMTM3NzcsImV4cCI6MTcxNDIwMDE3N30.cqmb9_nxLOGqh0EdPR9bN9cdumQC548JPGUHBMRWqak"
+										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJmYWJpYW43NTkzQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxNjE0NDc3MCwiZXhwIjoxNzE2MjMxMTcwfQ.tLWrps5Mr0gxCqIxoIWIegiLbXVZ9d9ejWLbwgyvdHE"
 									]
 								}
 							},
@@ -391,13 +391,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/reset_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE0NzE1NjE3LCJleHAiOjE3MTQ3MTY1MTd9.Sq-CmNWjDS6t4duhOAB7oEsRuX7cMNNmZIX3Zp4Ne2Y",
+									"raw": "{{host}}/reset_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE2MTQ0ODM4LCJleHAiOjE3MTYxNDU3Mzh9.G5wtVQEuyR7ReG5OnXU9LZXlFzs8yfE03Nza81ZhfDY",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"reset_password",
-										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE0NzE1NjE3LCJleHAiOjE3MTQ3MTY1MTd9.Sq-CmNWjDS6t4duhOAB7oEsRuX7cMNNmZIX3Zp4Ne2Y"
+										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE2MTQ0ODM4LCJleHAiOjE3MTYxNDU3Mzh9.G5wtVQEuyR7ReG5OnXU9LZXlFzs8yfE03Nza81ZhfDY"
 									]
 								}
 							},
@@ -421,13 +421,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/verify_forgot_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE0NzE1NjE3LCJleHAiOjE3MTQ3MTY1MTd9.Sq-CmNWjDS6t4duhOAB7oEsRuX7cMNNmZIX3Zp4Ne2Y",
+									"raw": "{{host}}/verify_forgot_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE2MTQ0ODM4LCJleHAiOjE3MTYxNDU3Mzh9.G5wtVQEuyR7ReG5OnXU9LZXlFzs8yfE03Nza81ZhfDY",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"verify_forgot_password",
-										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE0NzE1NjE3LCJleHAiOjE3MTQ3MTY1MTd9.Sq-CmNWjDS6t4duhOAB7oEsRuX7cMNNmZIX3Zp4Ne2Y"
+										"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlhbjc1OTNAZ21haWwuY29tIiwiaWF0IjoxNzE2MTQ0ODM4LCJleHAiOjE3MTYxNDU3Mzh9.G5wtVQEuyR7ReG5OnXU9LZXlFzs8yfE03Nza81ZhfDY"
 									]
 								}
 							},
@@ -639,11 +639,11 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/johan/OneDrive/Desktop/Ingles/January/25.01.2023.01.PNG"
+									"src": "/C:/Users/johan/OneDrive/Desktop/easyRestApiLand/EasyRestApiLand/00/logo_fondo_blanco.png"
 								},
 								{
 									"key": "fields",
-									"value": "{\"type\": \"DOC\", \"description\": \"Descripción del documento\", \"id_for_table\": 20, \"table\": \"doctors\",  \"action_type\":  \"DOCUMENT_INTERVIEW\", \"user_id\": 1}",
+									"value": "{\"type\": \"DOC\", \"description\": \"Descripción del documento\", \"id_for_table\": 2, \"table\": \"users\",  \"action_type\":  \"DOCUMENT_INTERVIEW\", \"user_id\": 5}",
 									"type": "text"
 								}
 							]
@@ -875,7 +875,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"subject\": \"Esto es una prueba desde postman\",\r\n  \"body_message\": \"El ciego imagina todo aquello que no puede ver...\",\r\n  \"email\": \"fabian7593@gmail.com\"\r\n}\r\n\r\n",
+							"raw": "{\r\n  \"subject\": \"This is an email test sending from postman\",\r\n  \"body_message\": \"Body message, remember this use the emails template\",\r\n  \"email\": \"fabian7593@gmail.com\"\r\n}\r\n\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -949,7 +949,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"notification_code\": \"TEST_4\",\r\n  \"id_user_send\": 1,\r\n  \"id_user_receive\": 1\r\n}\r\n",
+									"raw": "{\r\n  \"notification_code\": \"NOT_01\",\r\n  \"id_user_send\": 4,\r\n  \"id_user_receive\": 4\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1131,7 +1131,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"code\": \"TEST_4\",\r\n  \"type\": \"TESTING\",\r\n  \"subject\": \"Nuevo Test subject 4\",\r\n  \"message\": \"NUevo correo desde notifications 4\",\r\n  \"required_send_email\": true,\r\n  \"is_delete_after_read\": true,\r\n  \"action_url\": \"https://tusitio.com/mis-documentos\"\r\n}\r\n",
+							"raw": "{\r\n  \"code\": \"NOT_01\",\r\n  \"type\": \"DEVELOPMENT\",\r\n  \"subject\": \"New Development Test\",\r\n  \"message\": \"New email from notifications\",\r\n  \"required_send_email\": true,\r\n  \"is_delete_after_read\": true,\r\n  \"action_url\": \"https://tusitio.com/mis-documentos\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1367,7 +1367,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"method\": \"valor_de_method\",\r\n    \"class\": \"valor_de_class\",\r\n    \"type\": \"valor_de_type\", \r\n    \"https\": 200,\r\n    \"message\": \"valor_de_message\",\r\n    \"description\": \"valor_de_description\",\r\n    \"app_guid\": \"valor_de_app_guid\",\r\n    \"environment\": \"valor_de_environment\"\r\n}\r\n",
+							"raw": "{\r\n    \"method\": \"login\",\r\n    \"class\": \"UserController\",\r\n    \"type\": \"Error\", \r\n    \"https\": 400,\r\n    \"message\": \"Error DB: Duplicate entry\",\r\n    \"description\": \"Desc\",\r\n    \"app_guid\": \"8170fcb2-ef45-4173-9a1b-f682d38ddae9\",\r\n    \"environment\": \"backend\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
