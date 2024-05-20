@@ -263,32 +263,32 @@ https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land
 
 Structure: 
 
-![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true)
+<img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true" alt="alt tag" width="500"/>
 
 
 # How to run the existing Endpoints?
 * First you need a registered user:
   
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true)
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true" alt="alt tag" width="500"/>
 
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/04.PNG?raw=true)
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/04.PNG?raw=true" alt="alt tag" width="500"/>
 
 * This is an example reply of this register
   
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/05.PNG?raw=true)
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/05.PNG?raw=true" alt="alt tag" width="500"/>
 
 * At this moment you can't do login, because you need to confirm registration on your email
 
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/06.PNG?raw=true)
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/06.PNG?raw=true" alt="alt tag" width="500"/>
 
 * When you click on complete registration, this is an example of message showing
 
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/07.PNG?raw=true)
+ <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/07.PNG?raw=true" alt="alt tag" width="500"/>
 
 * And then you can do login, for obtain the access token, for do another request, as well you obtain the list of pages that the user can access, and the refresh token
 
-  ![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/08.PNG?raw=true)
+ <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/08.PNG?raw=true" alt="alt tag" width="500"/>
 
 * You can refresh your access token withouth do a login again, with this endpoint, and send it the refresh token.
 
-<img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true" alt="alt tag" width="500"/>
+ <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true" alt="alt tag" width="500"/>
