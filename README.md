@@ -257,7 +257,13 @@ You can see it on this route -> https://github.com/fabian7593/EasyRestApiLand/tr
 <br>
 
 
-## POST MAN
+
+
+
+# How to run the existing Endpoints?
+
+
+## Import into POST MAN
 Import the postman collection file to test the current endpoints
 https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land.postman_collection.json
 
@@ -266,7 +272,8 @@ Structure:
 <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true" alt="alt tag" width="200"/>
 
 
-# How to run the existing Endpoints?
+## Login and Register 
+
 * First you need a registered user:
   
   <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true" alt="alt tag" width="200"/>
@@ -293,3 +300,39 @@ Structure:
 * You can refresh your access token withouth do a login again, with this endpoint, and send it the refresh token.
 
   <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true" alt="alt tag" width="600"/>
+
+
+## Logs
+
+* You can save your traceabillity, of methods, with the respective values, or the error traceabillity as well, you have the possibillity to save the environment, the app guid, a description and others.
+  
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/11.PNG?raw=true" alt="alt tag" width="600"/>
+
+
+## Notifications
+
+* You can save the specific notifications, and then send it to a specific user. You can send an url action, and if the notification need to send an email of not.
+
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/12.PNG?raw=true" alt="alt tag" width="600"/>
+
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/13.PNG?raw=true" alt="alt tag" width="600"/>
+
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/14.PNG?raw=true" alt="alt tag" width="400"/>
+
+
+## Emails
+
+* You can send emails to a specific user registered, or you can send emails to all users just with one post endpoint.
+
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/15.PNG?raw=true" alt="alt tag" width="600"/>
+
+  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true" alt="alt tag" width="400"/>
+
+
+
+## Documents
+
+* You can save any file into s3 bucket of AWS, with one endpoint, and the reply is an url from aws server just for access it from this url.
+
+<img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true" alt="alt tag" width="600"/>
+  
