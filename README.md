@@ -143,7 +143,7 @@ COMPANY_FRONT_END_HOST="http://localhost:3000/"
 COMPANY_RESET_PASS_FRONT_END_URL="password_reset/"
 
 #This is the color of the emails titles
-COMPANY_MAIN_COLOR="#055D00"
+COMPANY_MAIN_COLOR="#4040FF"
 
 # this is the domain of the email logo
 COMPANY_DOMAIN="https://www.example.com"
