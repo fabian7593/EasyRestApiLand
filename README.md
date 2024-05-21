@@ -26,6 +26,10 @@
 11. [Developing New Endpoints and Modules](#developing-new-endpoints-and-modules)
 12. [Example Adding New Module](#example-adding-new-module)
 13. [Explanation of Programming Code](#explanation-of-programming-code)
+    1. [ControllerObject Explanation](#controllerobject-explanation)
+    2. [Builder Explanation](#builder-explanation)
+    3. [Required Fields Explanation](#required-fields-explanation)
+
 
 <br><br>
 ## Introduction
@@ -141,10 +145,11 @@ Copy the [ormConfig file](https://github.com/fabian7593/EasyRestApiLand/blob/mai
 ```bash
 typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
 ```
-
+<br><br>
 ## Set Application Settings
 Configure the `.env` file for correct endpoint operation. An example `.env` file is provided [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt).
 
+<br><br>
 ## Run the Application
 ```bash
 npm run dev
@@ -251,6 +256,7 @@ The example files are located in the repository under the [test folder](https://
 **Note:** These example files are not required for the normal functionality of your backend application. They are added here to complete the programming documentation.
 
 <br>
+
 ### Step-by-Step Example
 
 1. **Add Information to Unit Dynamics Central (UDC)**:
