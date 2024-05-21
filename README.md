@@ -479,3 +479,49 @@ CREATE TABLE IF NOT EXISTS `manufactures` (
          controller: "ManufactureController"
        };
       ```
+    * Then install the GenericController, if you need to change something into GenericController, you can create new controller and extends from GenericController, and then override the methods.
+       ```bash
+       const controller = new GenericController(Manufactures, controllerObj);
+      ```
+
+    * Into the routers methods, you need to instance the builder request handler and set as a param of all methods of controller, for example:
+       ```bash
+       route.get("/manufacture/get", async (req: Request, res: Response) => {
+           const requestHandler : RequestHandler = 
+                                   new RequestHandlerBuilder(res,req)
+                                   .setAdapter(new ManufactureAdapter(req))
+                                   .setMethod("getManufactureById")
+                                   .isValidateRole()
+                                   .isLogicalRemove()
+                                   .build();
+       
+           controller.getById(requestHandler);
+       });
+      ```
+
+* We need to explain all the methods of the Builder
+  * .setAdapter(new ManufactureAdapter(req)): This method is required and send the specific adapter as a param.
+  * .setMethod("getManufactureById"): This is the name of the respective method, we need to set it, because all the methods are so generics. Then for identified in case of error or something, need to set it.
+  * .isValidateWhereByUserId(): validate if the table have user id, for example if the table is linked with a user id, and just this user can change the information of this object.
+  * .isValidateRole(): If the method need to validate roles permissions.
+  * .isLogicalRemove(): If the table have "is_deleted" field, add this method for do a logical remove, if not add this method, the remove is complete into DB.
+  * .setFilters(filters): If the endpoint get multiple responses, you can set filters into url params, like this:
+      ```bash
+        const countryParam : string | null = getUrlParam("country", req) || null;
+        const industryParam : string | null = getUrlParam("industry_type", req) || null;
+    
+        const filters: FindManyOptions = {};
+        if(industryParam != null){
+            filters.where = { ...filters.where, udcIndustryType: industryParam};
+        }
+    
+        if(countryParam != null){
+            filters.where = { ...filters.where, countryIsoCode: countryParam};
+        }
+      ```
+  * .setRegexValidation(regexValidationList): If the endpoint is post or put, or need to send something into body json, and validate regular expression, need to set it, like this:
+     ```bash
+        const regexValidationList: [string, string][] = [
+          ['EMAIL_REGEX', req.body.email as string]
+        ];
+      ```
