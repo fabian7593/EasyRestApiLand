@@ -173,7 +173,8 @@ The system uses several JSON files for message configuration. These files can be
 ## Email Templates
 Several email templates are available for various phases of the app, such as registration emails, account activation pages, and password reset emails. These templates can be found [here](https://github.com/fabian7593/EasyRestApiLand/tree/main/email_templates).
 
-## Using Endpoints
+<br><br>
+## Using Existing Endpoints
 ### Import into Postman
 Import the Postman collection file to test the current endpoints: [Postman Collection](https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land.postman_collection.json).
 
@@ -226,15 +227,14 @@ Import the Postman collection file to test the current endpoints: [Postman Colle
 To develop new endpoints, follow these steps:
 
 1. Create a new module or folder inside the `src` folder.
-2. Create necessary files like controllers, services, routes, etc.
+2. Create necessary files like adapter and routes, if you need to change some method, extend the class and override the methods.
 3. Add routes in the main `index.ts` file.
 4. Use the existing structure as a guide to ensure consistency and maintainability.
 
 For detailed instructions and examples, refer to the existing code and structure provided in the repository.
 
+<br><br>
 ## Example Adding New Module
-
-### Example: Adding a CRUD for a Table
 
 We'll walk through adding a CRUD for managing the information of manufactures, using this as a learning example.
 
@@ -242,6 +242,7 @@ The example files are located in the repository under the [test folder](https://
 
 **Note:** These example files are not required for the normal functionality of your backend application. They are added here to complete the programming documentation.
 
+<br>
 ### Step-by-Step Example
 
 1. **Add Information to Unit Dynamics Central (UDC)**:
@@ -313,12 +314,14 @@ The example files are located in the repository under the [test folder](https://
     import { Manufactures } from "../../../models_type_orm/entities/Manufactures"
     import IAdapterFromBody from '../../Generics/Adapter/IAdapterFromBody';
 
+   //This class implements the adapter and the programmer needs to set the methods
    export default  class ManufactureAdapter implements IAdapterFromBody {
        private req: any;
        constructor(req: any) {
            this.req = req;
        }
 
+       // set the body json object to specific entity
        entityFromPostBody(): Manufactures {
            const entity = new Manufactures();
            entity.name = this.req.body.name;
@@ -336,6 +339,7 @@ The example files are located in the repository under the [test folder](https://
            return entity;
        }
 
+        // set the entity, to json body response
        entityToResponse(entity: Manufactures): any {
            return {
                id: entity.id,
@@ -429,7 +433,8 @@ The example files are located in the repository under the [test folder](https://
 <br><br>
 ## Explanation of Programming Code:
 
-* **ControllerObject:** We need to set the controller object and add the functionalities added in the last example of the table role_functionality, like this:
+### ControllerObject Explanation
+*  We need to set the controller object and add the functionalities added in the last example of the table role_functionality, like this:
    ```typescript
    const controllerObj: ControllerObject = {
      create: "MANUFACTURE_CREATE",
@@ -475,7 +480,7 @@ The example files are located in the repository under the [test folder](https://
    ];
    ```
 
-### Validate Required Fields into body JSON for POST request
+### Required Fields Explanation
 Use the `validateRequiredBodyJson` method found [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/src/Helpers/Validations.ts). 
 Add something like this:
 ```typescript
