@@ -24,6 +24,7 @@
     5. [Emails](#emails)
     6. [Documents](#documents)
 11. [Developing New Endpoints and Modules](#developing-new-endpoints-and-modules)
+12. [Example Adding New Module](#example-adding-new-module)
 
 ## Introduction
 Easy RestApi Land is a REST API project written in Node.js with TypeScript and Express.js. This project aims to increase the development speed of REST API backends by 30-40%, providing the essential components for building a backend application.
@@ -206,20 +207,20 @@ Import the Postman collection file to test the current endpoints: [Postman Colle
 ### Notifications
 - **Manage notifications and send them to users**:
 ![Notifications](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/12.PNG?raw=true)
-![Send Notification](https://github.com/fabian7593/EasyRestApiLand
 
-/blob/main/00/13.PNG?raw=true)
+![Notification Details](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/13.PNG?raw=true)
 
 ### Emails
 - **Send emails to users**:
 ![Emails](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/14.PNG?raw=true)
+
 ![Send Email](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/15.PNG?raw=true)
 
 ### Documents
 - **Manage documents and files**:
 ![Documents](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true)
+
 ![Document Management](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true)
-![Document URLs](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/18.PNG?raw=true)
 
 ## Developing New Endpoints and Modules
 To develop new endpoints, follow these steps:
@@ -231,215 +232,186 @@ To develop new endpoints, follow these steps:
 
 For detailed instructions and examples, refer to the existing code and structure provided in the repository.
 
+## Example Adding New Module
 
+### Example: Adding a CRUD for a Table
 
-# How to programming new endpoints and modules?
+We'll walk through adding a CRUD for managing the information of manufactures, using this as a learning example.
 
-We need to add a CRUD for example table to management the information of manufactures.
-We are going to introduce the programming of this module step by step.
+The example files are located in the repository under the [test folder](https://github.com/fabian7593/EasyRestApiLand/tree/main/src/Entities/test) and the [DB scripting for testing](https://github.com/fabian7593/EasyRestApiLand/blob/main/dbScripting/04_db_scripting_just_for_testing.sql). 
 
-<br>
-Each code that wee need in this example, there is in the repository, in the test folder -> https://github.com/fabian7593/EasyRestApiLand/tree/main/src/Entities/test.
+**Note:** These example files are not required for the normal functionality of your backend application. They are added here to complete the programming documentation.
 
-And in the file of db scripting just for testing ->  https://github.com/fabian7593/EasyRestApiLand/blob/main/dbScripting/04_db_scripting_just_for_testing.sql.
+### Step-by-Step Example
 
-NOTE: You need to understand that those example files are not required, in the normal funcionallity of your backend application, we just added this for complete the programming documentation.
-
-<br>
-
-* For this example we need to add some information to Unit Dynamics Central, at the same time, we will learn how can we use the UDC module.
-* We need to insert udc into db, at this form, for example: 
-```bash
-INSERT INTO `units_dynamic_central` (`code`, `name`, `type`, `value1`)
-VALUES
-('AUTOMOTIVE', 'Automotive Industry', 'INDUSTRY_TYPE', 'Automotive'),
-('TEXTILE', 'Textile Industry', 'INDUSTRY_TYPE', 'Textile'),
-('TECHNOLOGY', 'Technology Industry', 'INDUSTRY_TYPE', 'Technology'),
-('FOOD_AND_BEVERAGE', 'Food and Beverage Industry', 'INDUSTRY_TYPE', 'Food and Beverage'),
-('PHARMACEUTICAL', 'Pharmaceutical Industry', 'INDUSTRY_TYPE', 'Pharmaceutical');
-```
-
-* Then, we need to add the screen of manufacture, and the respective role asociated with this screen and its functionallities:
-```bash
-INSERT INTO screens (code, name, description)
-VALUES 
-    ('MANUFACTURE_SCREEN', 'MANUFACTURES', 'SCREEN FOR CREATE MANUFACTURES');
-
-INSERT INTO role_screen (role_code, screen_code, description) VALUES 
-('ADMIN', 'MANUFACTURE_SCREEN', 'Screen for creating MANUFACTURES');
-
-
-INSERT INTO role_functionallity (role_code, func_type, function_code, screen_code, description) VALUES 
-('ADMIN', 'C', 'MANUFACTURE_CREATE', 'MANUFACTURE_SCREEN', 'Create new project'),
-('ADMIN', 'R', 'MANUFACTURE_READ', 'MANUFACTURE_SCREEN', 'Read new project'),
-('ADMIN', 'U', 'MANUFACTURE_UPDATE', 'MANUFACTURE_SCREEN', 'Update new project'),
-('ADMIN', 'D', 'MANUFACTURE_DELETE', 'MANUFACTURE_SCREEN', 'Delete new project');
-```
-
-* Then we need to add the new table of manufactures into DB
-```bash
-DROP TABLE IF EXISTS `manufactures`;
-CREATE TABLE IF NOT EXISTS `manufactures` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255) NOT NULL,
-    `address` VARCHAR(255) DEFAULT NULL,
-    `city` VARCHAR(100) DEFAULT NULL,
-    `state` VARCHAR(100) DEFAULT NULL,
-    `zip_code` VARCHAR(20) DEFAULT NULL,
-    `country_iso_code` VARCHAR(3) DEFAULT NULL,
-    `phone` VARCHAR(20) DEFAULT NULL,
-    `email` VARCHAR(255) DEFAULT NULL,
-    `website` VARCHAR(255) DEFAULT NULL,
-    `is_deleted` TINYINT(1) DEFAULT 0,
-    `udc_industry_type` VARCHAR(100) DEFAULT NULL,
-    `notes` TEXT DEFAULT NULL,
-    `created_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (`udc_industry_type`) REFERENCES `units_dynamic_central` (`code`)
-);
-```
-
-* When you added all of those scripts into the db, you need to run the script to generate ORM with DB first, in this case we use ->
-  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
-   
-* The you can add a folder into entities, in this case with the name "test".
-* And next you need to add to files, "ManufactureAdapter.ts" and "ManufactureRouter.ts".
-  * ManufactureAdapter.ts:
-    * This is a class that implements the Adapter Interface, and need to set it the respective functions into class, for example:
-    
-     ```bash
-     //This method convert from body json, to entity type manufacture, for insert
-     entityFromPostBody() : Manufactures{
-          const entity = new Manufactures();
-          entity.name = this.req.body.name;
-          entity.city = this.req.body.city || null;
-          entity.address = this.req.body.address || null;
-          entity.countryIsoCode = this.req.body.country_iso_code || null;
-          entity.email = this.req.body.email || null;
-          entity.state = this.req.body.state || null;
-          entity.zipCode = this.req.body.zip_code || null;
-          entity.phone = this.req.body.phone || null;
-          entity.website = this.req.body.website || null;
-          entity.udcIndustryType = this.req.body.industry_type;
-          entity.notes = this.req.body.notes || null;
-          entity.createdDate = new Date();
-          return entity;
-      }
+1. **Add Information to Unit Dynamics Central (UDC)**:
+   Insert UDC data into the database:
+   ```sql
+   INSERT INTO `units_dynamic_central` (`code`, `name`, `type`, `value1`)
+   VALUES
+   ('AUTOMOTIVE', 'Automotive Industry', 'INDUSTRY_TYPE', 'Automotive'),
+   ('TEXTILE', 'Textile Industry', 'INDUSTRY_TYPE', 'Textile'),
+   ('TECHNOLOGY', 'Technology Industry', 'INDUSTRY_TYPE', 'Technology'),
+   ('FOOD_AND_BEVERAGE', 'Food and Beverage Industry', 'INDUSTRY_TYPE', 'Food and Beverage'),
+   ('PHARMACEUTICAL', 'Pharmaceutical Industry', 'INDUSTRY_TYPE', 'Pharmaceutical');
    ```
 
+2. **Add the Manufacture Screen and Role**:
+   ```sql
+   INSERT INTO screens (code, name, description)
+   VALUES 
+   ('MANUFACTURE_SCREEN', 'MANUFACTURES', 'SCREEN FOR CREATE MANUFACTURES');
 
-      //These methods convert the entity manufacture to json objecto to show into response
-       entityToResponse(entity: Manufactures) : any{
-           return  {
-               id : entity.id,
+   INSERT INTO role_screen (role_code, screen_code, description) VALUES 
+   ('ADMIN', 'MANUFACTURE_SCREEN', 'Screen for creating MANUFACTURES');
+
+   INSERT INTO role_functionallity (role_code, func_type, function_code, screen_code, description) VALUES 
+   ('ADMIN', 'C', 'MANUFACTURE_CREATE', 'MANUFACTURE_SCREEN', 'Create new project'),
+   ('ADMIN', 'R', 'MANUFACTURE_READ', 'MANUFACTURE_SCREEN', 'Read new project'),
+   ('ADMIN', 'U', 'MANUFACTURE_UPDATE', 'MANUFACTURE_SCREEN', 'Update new project'),
+   ('ADMIN', 'D', 'MANUFACTURE_DELETE', 'MANUFACTURE_SCREEN', 'Delete new project');
+   ```
+
+3. **Add the Manufactures Table to the Database**:
+   ```sql
+   DROP TABLE IF EXISTS `manufactures`;
+   CREATE TABLE IF NOT EXISTS `manufactures` (
+     `id` INT AUTO_INCREMENT PRIMARY KEY,
+     `name` VARCHAR(255) NOT NULL,
+     `address` VARCHAR(255) DEFAULT NULL,
+     `city` VARCHAR(100) DEFAULT NULL,
+     `state` VARCHAR(100) DEFAULT NULL,
+     `zip_code` VARCHAR(20) DEFAULT NULL,
+     `country_iso_code` VARCHAR(3) DEFAULT NULL,
+     `phone` VARCHAR(20) DEFAULT NULL,
+     `email` VARCHAR(255) DEFAULT NULL,
+     `website` VARCHAR(255) DEFAULT NULL,
+     `is_deleted` TINYINT(1) DEFAULT 0,
+     `udc_industry_type` VARCHAR(100) DEFAULT NULL,
+     `notes` TEXT DEFAULT NULL,
+     `created_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+     `updated_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+     FOREIGN KEY (`udc_industry_type`) REFERENCES `units_dynamic_central` (`code`)
+   );
+   ```
+
+4. **Generate ORM with DB First**:
+   ```bash
+   typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+   ```
+
+5. **Add Folder and Files for the Module**:
+   - Create a folder named "test" inside `src/Entities`.
+   - Add the following files:
+     - `ManufactureAdapter.ts`
+     - `ManufactureRouter.ts`
+
+6. **Implement `ManufactureAdapter.ts`**:
+   ```typescript
+   // ManufactureAdapter.ts
+   import { Manufactures } from './models/Manufactures';
+
+   class ManufactureAdapter {
+       private req: any;
+       constructor(req: any) {
+           this.req = req;
+       }
+
+       entityFromPostBody(): Manufactures {
+           const entity = new Manufactures();
+           entity.name = this.req.body.name;
+           entity.city = this.req.body.city || null;
+           entity.address = this.req.body.address || null;
+           entity.countryIsoCode = this.req.body.country_iso_code || null;
+           entity.email = this.req.body.email || null;
+           entity.state = this.req.body.state || null;
+           entity.zipCode = this.req.body.zip_code || null;
+           entity.phone = this.req.body.phone || null;
+           entity.website = this.req.body.website || null;
+           entity.udcIndustryType = this.req.body.industry_type;
+           entity.notes = this.req.body.notes || null;
+           entity.createdDate = new Date();
+           return entity;
+       }
+
+       entityToResponse(entity: Manufactures): any {
+           return {
+               id: entity.id,
                name: entity.name,
                address: entity.address,
-               city: entity.city ,
+               city: entity.city,
                state: entity.state,
                zip_code: entity.zipCode,
                country_iso_code: entity.countryIsoCode,
                phone: entity.phone,
                email: entity.email,
-               website: entity.createdDate,
+               website: entity.website,
                industry_type: entity.udcIndustryType,
                notes: entity.notes,
                created_date: entity.createdDate,
                updated_date: entity.updatedDate
            };
        }
-   
-       // this show multiple manufactures
+
        entitiesToResponse(entities: Manufactures[] | null): any {
            const response: any[] = [];
-       
-           if(entities != null){
+           if (entities != null) {
                for (const entity of entities) {
                    response.push(this.entityToResponse(entity));
                }
            }
            return response;
        }
-    ```
-  * ManufactureRouter.ts (This class have the router for all methods of manufacture CRUD):
-    * We need to set the controller object, and add the functionallities added in the last example of the table role_functionallity, like this ->
-       ```bash
-       const controllerObj: ControllerObject = {
-         create: "MANUFACTURE_CREATE",
-         update: "MANUFACTURE_UPDATE",
-         delete: "MANUFACTURE_DELETE",
-         getAll: "MANUFACTURE_READ",
-         getById: "MANUFACTURE_READ",
-         controller: "ManufactureController"
-       };
-      ```
-    * Then install the GenericController, if you need to change something into GenericController, you can create new controller and extends from GenericController, and then override the methods.
-       ```bash
-       const controller = new GenericController(Manufactures, controllerObj);
-      ```
+   }
 
-    * Into the routers methods, you need to instance the builder request handler and set as a param of all methods of controller, for example:
-       ```bash
-       route.get("/manufacture/get", async (req: Request, res: Response) => {
-           const requestHandler : RequestHandler = 
-                                   new RequestHandlerBuilder(res,req)
-                                   .setAdapter(new ManufactureAdapter(req))
-                                   .setMethod("getManufactureById")
-                                   .isValidateRole()
-                                   .isLogicalRemove()
-                                   .build();
-       
-           controller.getById(requestHandler);
-       });
-      ```
+   export default ManufactureAdapter;
+   ```
 
-* We need to explain all the methods of the Builder
-  * .setAdapter(new ManufactureAdapter(req)): This method is required and send the specific adapter as a param.
-  * .setMethod("getManufactureById"): This is the name of the respective method, we need to set it, because all the methods are so generics. Then for identified in case of error or something, need to set it.
-  * .isValidateWhereByUserId(): validate if the table have user id, for example if the table is linked with a user id, and just this user can change the information of this object.
-  * .isValidateRole(): If the method need to validate roles permissions.
-  * .isLogicalRemove(): If the table have "is_deleted" field, add this method for do a logical remove, if not add this method, the remove is complete into DB.
-  * .setFilters(filters): If the endpoint get multiple responses, you can set filters into url params, like this:
-      ```bash
-        const countryParam : string | null = getUrlParam("country", req) || null;
-        const industryParam : string | null = getUrlParam("industry_type", req) || null;
-    
-        const filters: FindManyOptions = {};
-        if(industryParam != null){
-            filters.where = { ...filters.where, udcIndustryType: industryParam};
-        }
-    
-        if(countryParam != null){
-            filters.where = { ...filters.where, countryIsoCode: countryParam};
-        }
-      ```
-  * .setRegexValidation(regexValidationList): If the endpoint is post or put, or need to send something into body json, and validate regular expression, need to set it, like this:
-     ```bash
-        const regexValidationList: [string, string][] = [
-          ['EMAIL_REGEX', req.body.email as string]
-        ];
-      ```
-* For validate the required fields into body json for insert entities, use the validateRequiredBodyJson method, into -> https://github.com/fabian7593/EasyRestApiLand/blob/main/src/Helpers/Validations.ts
-  Add into this method, something like this:
-  ```bash
-      else if(validateEndPoint == "MANUFACTURE_CREATE"){
-          if (!this.req.body.name || !this.req.body.industry_type) {
-              hasRequiredFields = false;
-          }
-      }
-  ```
+7. **Implement `ManufactureRouter.ts`**:
+   ```typescript
+   // ManufactureRouter.ts
+   import { Router, Request, Response } from 'express';
+   import ManufactureAdapter from './ManufactureAdapter';
+   import GenericController from './GenericController';
+   import { Manufactures } from './models/Manufactures';
 
-  * And for the last one step, we need to set the router into index.ts, like this:
-  ```bash
-      import ManufactureRouter from './Entities/test/ManufactureRouter';
-      app.use(ManufactureRouter);
-  ```
+   const route = Router();
 
-   * And then run: "npm run dev" for start the server and testing into postman.
+   const controllerObj: ControllerObject = {
+       create: "MANUFACTURE_CREATE",
+       update: "MANUFACTURE_UPDATE",
+       delete: "MANUFACTURE_DELETE",
+       getAll: "MANUFACTURE_READ",
+       getById: "MANUFACTURE_READ",
+       controller: "ManufactureController"
+   };
 
+   const controller = new GenericController(Manufactures, controllerObj);
 
+   route.get("/manufacture/get", async (req: Request, res: Response) => {
+       const requestHandler = new RequestHandlerBuilder(res, req)
+           .setAdapter(new ManufactureAdapter(req))
+           .setMethod("getManufactureById")
+           .isValidateRole()
+           .isLogicalRemove()
+           .build();
+       controller.getById(requestHandler);
+   });
 
+   export default route;
+   ```
 
+8. **Set Router in `index.ts`**:
+   ```typescript
+   import ManufactureRouter from './Entities/test/ManufactureRouter';
+   app.use(ManufactureRouter);
+   ```
 
----
+9. **Run the Server and Test**:
+   ```bash
+   npm run dev
+   ```
 
-For further details and updates, visit the [GitHub repository](https://github.com/fabian7593/EasyRestApiLand).
+   You can now test your new endpoints using Postman or any other API testing tool.
+
+By following these steps, you will have successfully added a new CRUD module for managing manufactures, including all necessary endpoints and database integrations.
