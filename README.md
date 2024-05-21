@@ -25,7 +25,9 @@
     6. [Documents](#documents)
 11. [Developing New Endpoints and Modules](#developing-new-endpoints-and-modules)
 12. [Example Adding New Module](#example-adding-new-module)
+13. [Explanation of Programming Code](#explanation-of-programming-code)
 
+<br><br>
 ## Introduction
 Easy RestApi Land is a REST API project written in Node.js with TypeScript and Express.js. This project aims to increase the development speed of REST API backends by 30-40%, providing the essential components for building a backend application.
 
@@ -33,6 +35,7 @@ The project uses several design patterns, including generics, builder, repositor
 
 This is a lightweight, manually constructed "framework" for developing REST API backends, primarily focusing on CRUD operations.
 
+<br><br>
 ## Project Structure
 The project includes:
 
@@ -69,6 +72,7 @@ The project includes:
   - Validations (required fields, regular expressions, etc.)
   - Microservices support
 
+<br><br>
 ## Getting Started
 To use this framework, follow the steps below.
 
@@ -123,6 +127,7 @@ npm install @types/node --save-dev
 npm i --save-dev @types/multer
 ```
 
+<br><br>
 ## Run SQL Scripting
 Run the SQL files in order on your MariaDB or MySQL from the [dbScripting folder](https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting).
 
@@ -145,6 +150,7 @@ Configure the `.env` file for correct endpoint operation. An example `.env` file
 npm run dev
 ```
 
+<br><br>
 ## Response Structure
 All responses have the same JSON body structure:
 
@@ -163,6 +169,7 @@ All responses have the same JSON body structure:
 - **Data**: Contains the main body information from the backend response.
 - **Info**: A string with additional information related to the response.
 
+<br><br>
 ## JSON Files Messages
 The system uses several JSON files for message configuration. These files can be found [here](https://github.com/fabian7593/EasyRestApiLand/tree/main/json):
 - **errorDBList.json**: Contains database errors with respective error numbers, codes, and messages.
@@ -170,6 +177,7 @@ The system uses several JSON files for message configuration. These files can be
 - **regex.json**: Contains regular expressions and respective messages (only works if `IS_DEBUGGING=0` in the `.env` file).
 - **statusResponse.json**: Contains the list of status response objects with respective IDs, names, and HTTP statuses.
 
+<br><br>
 ## Email Templates
 Several email templates are available for various phases of the app, such as registration emails, account activation pages, and password reset emails. These templates can be found [here](https://github.com/fabian7593/EasyRestApiLand/tree/main/email_templates).
 
@@ -431,7 +439,7 @@ The example files are located in the repository under the [test folder](https://
 
 
 <br><br>
-## Explanation of Programming Code:
+## Explanation of Programming Code
 
 ### ControllerObject Explanation
 *  We need to set the controller object and add the functionalities added in the last example of the table role_functionality, like this:
