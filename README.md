@@ -143,7 +143,7 @@ npm install -g typeorm-model-generator@0.4.6
 
 Copy the [ormConfig file](https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js) to the root of the project and run:
 ```bash
-typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+typeorm-model-generator -h localhost -d easy_api_land_db -p 3306 -u root -x "password" -e mysql -o ./models_type_orm
 ```
 <br><br>
 ## Set Application Settings
@@ -182,7 +182,7 @@ COMPANY_HAS_SECRET_API_KEY=0
 SERVER_PORT=3000
 
 #DB Information on connection string
-DB_PORT=3307
+DB_PORT=3306
 DB_HOST="localhost"
 DB_USER="root"
 DB_PASSWORD=""
@@ -429,7 +429,7 @@ All of those steps is for explain that.
 
 4. **Generate ORM with DB First**:
    ```bash
-   typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+   typeorm-model-generator -h localhost -d easy_api_land_db -p 3306 -u root -x "password" -e mysql -o ./models_type_orm
    ```
 
 5. **Add Folder and Files for the Module**:
