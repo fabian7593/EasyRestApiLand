@@ -195,46 +195,64 @@ Import the Postman collection file to test the current endpoints: [Postman Colle
 ![Postman Collection Structure](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true)
 
 ### Login and Register
+
 - **Register a user**:
+  
 ![Register User](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true)
+
 ![Register User Response](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/04.PNG?raw=true)
 
 - **Registration response example**:
+  
 ![Registration Response Example](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/05.PNG?raw=true)
 
 - **Email confirmation required**:
+  
 ![Email Confirmation](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/06.PNG?raw=true)
 
 - **Email confirmation message**:
+  
 ![Email Confirmation Message](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/07.PNG?raw=true)
 
 - **Login to get access token**:
+  
 ![Login Response](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/08.PNG?raw=true)
 
 - **Refresh access token without login**:
+  
 ![Refresh Token](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true)
 
 ### Logs
+
 - **Save traceability of methods and errors**:
+  
 ![Logs](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/11.PNG?raw=true)
 
 ### Notifications
+
 - **Manage notifications and send them to users**:
+  
 ![Notifications](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/12.PNG?raw=true)
 
 ![Notification Details](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/13.PNG?raw=true)
 
+
 ### Emails
+
 - **Send emails to users**:
+  
 ![Emails](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/14.PNG?raw=true)
 
 ![Send Email](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/15.PNG?raw=true)
 
 ### Documents
+
 - **Manage documents and files**:
+  
 ![Documents](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true)
 
 ![Document Management](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true)
+
 
 <br><br>
 ## Developing New Endpoints and Modules
