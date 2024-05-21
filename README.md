@@ -1,344 +1,237 @@
+# Easy RestApi Land
+
 [![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png)](https://github.com/fabian7593/EasyRestApiLand)
 
-# Easy RestApi Land
-This projetc is a RestApi project written on node js with typescript and express js. That Project increases the development speed of rest apis backends by 30 or 40%.
-And gives us the most important and basic parts of developing a backend application.
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Project Structure](#project-structure)
+3. [Getting Started](#getting-started)
+    1. [Install Node](#install-node)
+    2. [Create Project and Install Necessary Packages](#create-project-and-install-necessary-packages)
+    3. [Compile](#compile)
+    4. [Install TypeScript Packages](#install-typescript-packages)
+4. [Run SQL Scripting](#run-sql-scripting)
+5. [Set Application Settings](#set-application-settings)
+6. [Run the Application](#run-the-application)
+7. [Response Structure](#response-structure)
+8. [JSON Files Messages](#json-files-messages)
+9. [Email Templates](#email-templates)
+10. [Using Endpoints](#using-endpoints)
+    1. [Import into Postman](#import-into-postman)
+    2. [Login and Register](#login-and-register)
+    3. [Logs](#logs)
+    4. [Notifications](#notifications)
+    5. [Emails](#emails)
+    6. [Documents](#documents)
+11. [Developing New Endpoints and Modules](#developing-new-endpoints-and-modules)
 
-This project use some design patterns like generics, builder, repository, dependency injection, and others and some of the SOLID principles.
+## Introduction
+Easy RestApi Land is a REST API project written in Node.js with TypeScript and Express.js. This project aims to increase the development speed of REST API backends by 30-40%, providing the essential components for building a backend application.
 
-As well the project have a multiparadigm programming with Function oriented and POO oriented as well, with the result of FOOP (Function-Oriented and Object-Oriented Programming).
+The project uses several design patterns, including generics, builder, repository, dependency injection, and some SOLID principles. It supports multi-paradigm programming, combining functional and object-oriented programming (FOOP).
 
-This is a lit manually "framework" for do rest apis backend, with the CRUD methods mainly.
+This is a lightweight, manually constructed "framework" for developing REST API backends, primarily focusing on CRUD operations.
 
-## The project contains:
+## Project Structure
+The project includes:
 
-* Logic of User and roles
-  * Register
-  * CRUD Users
-  * Roles by functionallities
-  * Roles by Screens
-  * Login
-  * Password Reset / Forgot Password
-  * Activate User by email Verification
-    
-* Security to validate on each request
-  * JWT / User login
-  * Refresh token
-  * Api key on authorization
-  * Roles validation by user
-    
-* Notifications
-  * Notifications management
-  * Send notification of all users of the app
-  * Posibillity to send emails when send notifications
-    
-* Documents
-  * Document management with AWS S3
-  * Logic to save, update and delete files on AWS S3.
-  * Get file by code, and obtain the specific URL to access file.
+- **User and Roles Management**
+  - User registration
+  - CRUD operations for users
+  - Role-based functionalities and screen permissions
+  - User login
+  - Password reset/forgot password
+  - Email verification for user activation
 
-* Another things
-  * Easy Fast Structure: An Structure to create a complete CRUD of any tables of DB, with just 2 files and less than 300 lines of code.
-  * UDC (Unit Dynamic Central):
-      This is the important information to show on drop down list, checklist, or another types of information, for config or for fill the other tables.
-      For example the list of countries, in db, or list of currencies or phones codes, or anything that you need as miscellaneous information.
-  * Logs: This is a table for save all the logs on the apps, with important information like platform, ip, method and class, and anothers.
-  * Email Management: Some requests for send emails fast and easy (in this example with gmail).
-  * Error Management: This project has a strong structure of error management.
-  * Validations: A lot of important validations like required fields, regular expressions, and others.
-  * Microservices: You have the possibillity to modify the code easly and set all of those functionallities on separate microservices.
+- **Security**
+  - JWT/User login
+  - Refresh token
+  - API key authorization
+  - Role validation by user
 
-  
-<br>
-<br>
+- **Notifications**
+  - Notification management
+  - Send notifications to all users
+  - Email notifications
 
-# Getting Started
-We need to install necessary packages to use this framework.
-## Install Node
-* curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-* nvm install 20.5.0
-* nvm use 20.5.0
-* nvm alias default 20.5.0
-* node -v
-* npm --version - 6.14.4
-  
-## Create Project and Install some necessary packages
-* mkdir myproject
-* cd myproject
-* npm init -y
-* npm install express axios dotenv aws-sdk cors mariadb nodemailer jsonwebtoken multer
-* npm install typescript
-* npm install ts-node-dev --save-dev
-* npm install mysql --save
+- **Documents**
+  - Document management with AWS S3
+  - Save, update, and delete files on AWS S3
+  - Retrieve file URLs by code
 
+- **Additional Features**
+  - Easy and fast structure for creating CRUD operations
+  - Unit Dynamic Central (UDC) for managing dropdown lists and other configurations
+  - Logging for important app events
+  - Email management with Nodemailer
+  - Error management structure
+  - Validations (required fields, regular expressions, etc.)
+  - Microservices support
 
-Then add into package.json script, this code -> 
+## Getting Started
+To use this framework, follow the steps below.
+
+### Install Node
 ```bash
-  "scripts": {
-    "dev": "ts-node-dev src/index.ts",
-    "mail": "ts-node-dev src/indexSendMail.ts",
-    "connection": "ts-node-dev src/indexdbconnection.ts",
-    "compile": "tsc",
-    "start": "node build/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install 20.5.0
+nvm use 20.5.0
+nvm alias default 20.5.0
+node -v
+npm --version - 6.14.4
 ```
 
-## Compile
-* npm run compile -- --init
-* change your tsconfig.json with this one.
-  * https://github.com/fabian7593/EasyRestApiLand/blob/main/tsconfig.json
+### Create Project and Install Necessary Packages
+```bash
+mkdir myproject
+cd myproject
+npm init -y
+npm install express axios dotenv aws-sdk cors mariadb nodemailer jsonwebtoken multer
+npm install typescript
+npm install ts-node-dev --save-dev
+npm install mysql --save
+```
 
-## Install typescript packages
-* npm install @‌types/express -D
-* npm install @‌types/cors -D
-* npm i --save-dev @‌types/multer
-* npm install mariadb @‌types/mariadb -D
-* npm i --save-dev @types/nodemailer
-* npm install typeorm reflect-metadata
-* npm install @types/node --save-dev
-* npm i --save-dev @types/nodemailer
-* npm i --save-dev @types/multer
+Add the following scripts to your `package.json`:
+```json
+"scripts": {
+  "dev": "ts-node-dev src/index.ts",
+  "mail": "ts-node-dev src/indexSendMail.ts",
+  "connection": "ts-node-dev src/indexdbconnection.ts",
+  "compile": "tsc",
+  "start": "node build/index.js",
+  "test": "echo \"Error: no test specified\" && exit 1"
+}
+```
 
+### Compile
+```bash
+npm run compile -- --init
+```
+Replace your `tsconfig.json` with the one provided [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/tsconfig.json).
 
-<br>
-<br>
+### Install TypeScript Packages
+```bash
+npm install @types/express -D
+npm install @types/cors -D
+npm i --save-dev @types/multer
+npm install mariadb @types/mariadb -D
+npm i --save-dev @types/nodemailer
+npm install typeorm reflect-metadata
+npm install @types/node --save-dev
+npm i --save-dev @types/multer
+```
 
 ## Run SQL Scripting
-* Run the sql files in order on your MariaDb or MySQL.
-  * https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting
-* Install these libraries
-   * npm install -g typeorm@0.2.34
-   * npm install -g typeorm-model-generator@0.4.6
-* Copy File ormConfig in the root of the project
-  * https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js
-* Run
-  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+Run the SQL files in order on your MariaDB or MySQL from the [dbScripting folder](https://github.com/fabian7593/EasyRestApiLand/tree/main/dbScripting).
 
-<br>
-<br>
-
-
-## Set settings of application into .env file 
-This file is so important to the correct working of the endpoints.
-I upload an example of .env here ->
-https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt
-
+Install these libraries:
 ```bash
-# Company information 
-COMPANY_NAME="Easy Rest Api Land"
-
-# This logo is for show into the emails 
-COMPANY_LOGO=https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png
-
-# These are the subjects for register and forgot password
-COMPANY_REGISTER_SUBJECT="Account Verification"
-COMPANY_FORGOT_PASS_SUBJECT="Forgot Password"
-
-#This is the host for confirmation register, I recomended to set the url of the backend project
-COMPANY_HOST="http://localhost:3000/"
-
-# This is for build the url for vefiry forgot password
-COMPANY_FRONT_END_HOST="http://localhost:3000/"
-COMPANY_RESET_PASS_FRONT_END_URL="password_reset/"
-
-#This is the color of the emails titles
-COMPANY_MAIN_COLOR="#6666FF"
-
-# this is the domain of the email logo
-COMPANY_DOMAIN="https://www.example.com"
-
-#This is the security api key if the endpoints require this, in the header you need to set -> x-api-key
-COMPANY_SECRET_API_KEY="8170fcb2-ef45-4173-8a37-f682d38ddae9"
-#If this variable is 1, the endpoints validate the x-api-key
-COMPANY_HAS_SECRET_API_KEY=0
-
-#This is the port of this server node backend
-SERVER_PORT=3000
-
-#DB Information on connection string
-DB_PORT=3307
-DB_HOST="localhost"
-DB_USER="root"
-DB_PASSWORD=""
-DB_NAME="easy_api_land_db"
-DB_CONNECTION_LIMIT=150
-
-#JWT - All of JWT Tokens of login, refresh, forgot password and register token.
-JWT_EXPIRE=30000s
-JWT_SECRET_KEY=f749b45a-06e9-4ba1-a842-630184b443f6
-
-#JWT REFRESH TOKEN
-JWT_REFRESH_EXPIRE=1d
-JWT_REFRESH_SECRET_KEY=44e7d167-fd16-41f4-9e48-e6218fbf0a41
-
-#JWT forgot password
-JWT_FORGOT_PASSWORD_EXPIRE=900s
-JWT_FORGOT_PASSWORD_TOKEN=f749b45a-35a1-77ty-12we-630184b443f6
-
-#JWT Register Token
-JWT_REGISTER_TOKEN=44fr2167-1oi8-55ht-3ew1-630184b443f6
-
-
-#Password Salt
-SALT=550e8400e29b41d4a716446655412345
-
-#Is debugging active, not validate the regular expressions and show all console logs.
-IS_DEBUGGING=0
-
-# General Settings
-# This settings is the max numbers of fail logins, and page size by default if not set it on url params.
-FAIL_LOGIN_MAX_NUMBER=3
-PAGE_SIZE=3000
-PAGE_OFFSET=1
-
-
-# AWS S3 File Storage Information
-BUCKET_NAME="bucket-name"
-BUCKET_REGION="us-east-2"
-#configure IAM AWS
-ACCESS_KEY="AKIAZQ3DRSPRNUX12345"
-SECRET_ACCESS_KEY=""
-
-# Emails information - This information is for node mailer
-EMAIL_SERVICE=gmail
-EMAIL_AUTH_USER="test@gmail.com"
-EMAIL_AUTH_PASSWORD="test_password"
-EMAIL_FROM="test@gmail.com"
+npm install -g typeorm@0.2.34
+npm install -g typeorm-model-generator@0.4.6
 ```
 
-<br>
-<br>
-
-## RUN
-* npm run dev
-
-
-<br>
-
-# Important information
-
-First you need to understand the structure or the responses.
-All the responses have the same body information in JSON:
-
-* Status: is an object with id and message, this status id is not the HTTP status, is just an specific id.
-* Message: represents the action, for example Unauthorized, Error, Warning, etc.
-* Data: Is the important body information from backend response.
-* Info: A simple string with more information related the response.
-
-
+Copy the [ormConfig file](https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js) to the root of the project and run:
 ```bash
+typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+```
+
+## Set Application Settings
+Configure the `.env` file for correct endpoint operation. An example `.env` file is provided [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt).
+
+## Run the Application
+```bash
+npm run dev
+```
+
+## Response Structure
+All responses have the same JSON body structure:
+
+```json
 {
     "status": {
         "id": 1,
         "message": "Success"
     },
-    "data": {  },
+    "data": { },
     "info": "Login Successful"
 }
 ```
+- **Status**: An object with `id` and `message`. This `id` is not the HTTP status but a specific identifier.
+- **Message**: Indicates the action, e.g., Unauthorized, Error, Warning, etc.
+- **Data**: Contains the main body information from the backend response.
+- **Info**: A string with additional information related to the response.
 
-
-## Json Files Messages
-The system have some files with message configuration, for any specific response, message text and others.
-You can see it on this route -> https://github.com/fabian7593/EasyRestApiLand/tree/main/json
-
-* errorDBList.json: This has some errors from db, with the respective error number, code and message that you need to show on the response.
-* messages.json: This is the list of messages for sent in info response, depends response.
-* regex.json: This is the list of regular expression and the respective messages if the rule is not followed. (It only works if IS_DEBUGGING=0 in .env file).
-* statusResponse.json: This is the list of status object response, with the respective id, name and http status.
-
+## JSON Files Messages
+The system uses several JSON files for message configuration. These files can be found [here](https://github.com/fabian7593/EasyRestApiLand/tree/main/json):
+- **errorDBList.json**: Contains database errors with respective error numbers, codes, and messages.
+- **messages.json**: Contains a list of messages for responses.
+- **regex.json**: Contains regular expressions and respective messages (only works if `IS_DEBUGGING=0` in the `.env` file).
+- **statusResponse.json**: Contains the list of status response objects with respective IDs, names, and HTTP statuses.
 
 ## Email Templates
-This is some email templates for any important phases of the app, for example, register email, active account page and forgot password email.
-As well a generic template email for send emails from the application.
-You can see it on this route -> https://github.com/fabian7593/EasyRestApiLand/tree/main/email_templates
+Several email templates are available for various phases of the app, such as registration emails, account activation pages, and password reset emails. These templates can be found [here](https://github.com/fabian7593/EasyRestApiLand/tree/main/email_templates).
 
-<br>
+## Using Endpoints
+### Import into Postman
+Import the Postman collection file to test the current endpoints: [Postman Collection](https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land.postman_collection.json).
 
+#### Structure
+![Postman Collection Structure](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true)
 
+### Login and Register
+- **Register a user**:
+![Register User](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true)
+![Register User Response](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/04.PNG?raw=true)
 
+- **Registration response example**:
+![Registration Response Example](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/05.PNG?raw=true)
 
+- **Email confirmation required**:
+![Email Confirmation](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/06.PNG?raw=true)
 
-# How to run the existing Endpoints?
+- **Email confirmation message**:
+![Email Confirmation Message](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/07.PNG?raw=true)
 
+- **Login to get access token**:
+![Login Response](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/08.PNG?raw=true)
 
-## Import into POST MAN
-Import the postman collection file to test the current endpoints
-https://github.com/fabian7593/EasyRestApiLand/blob/main/Easy%20Rest%20Api%20Land.postman_collection.json
+- **Refresh access token without login**:
+![Refresh Token](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true)
 
-Structure: 
+### Logs
+- **Save traceability of methods and errors**:
+![Logs](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/11.PNG?raw=true)
 
-<img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/01.PNG?raw=true" alt="alt tag" width="200"/>
+### Notifications
+- **Manage notifications and send them to users**:
+![Notifications](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/12.PNG?raw=true)
+![Send Notification](https://github.com/fabian7593/EasyRestApiLand
 
+/blob/main/00/13.PNG?raw=true)
 
-## Login and Register 
+### Emails
+- **Send emails to users**:
+![Emails](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/14.PNG?raw=true)
+![Send Email](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/15.PNG?raw=true)
 
-* First you need a registered user:
-  
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/03.PNG?raw=true" alt="alt tag" width="200"/>
+### Documents
+- **Manage documents and files**:
+![Documents](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true)
+![Document Management](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true)
+![Document URLs](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/18.PNG?raw=true)
 
+## Developing New Endpoints and Modules
+To develop new endpoints, follow these steps:
 
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/04.PNG?raw=true" alt="alt tag" width="600"/>
+1. Create a new module or folder inside the `src` folder.
+2. Create necessary files like controllers, services, routes, etc.
+3. Add routes in the main `index.ts` file.
+4. Use the existing structure as a guide to ensure consistency and maintainability.
 
-* This is an example reply of this register
-  
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/05.PNG?raw=true" alt="alt tag" width="400"/>
-
-* At this moment you can't do login, because you need to confirm registration on your email
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/06.PNG?raw=true" alt="alt tag" width="400"/>
-
-* When you click on complete registration, this is an example of message showing
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/07.PNG?raw=true" alt="alt tag" width="400"/>
-
-* And then you can do login, for obtain the access token, for do another request, as well you obtain the list of pages that the user can access, and the refresh token
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/08.PNG?raw=true" alt="alt tag" width="600"/>
-
-* You can refresh your access token withouth do a login again, with this endpoint, and send it the refresh token.
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/09.PNG?raw=true" alt="alt tag" width="600"/>
-
-
-## Logs
-
-* You can save your traceabillity, of methods, with the respective values, or the error traceabillity as well, you have the possibillity to save the environment, the app guid, a description and others.
-  
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/11.PNG?raw=true" alt="alt tag" width="600"/>
-
-
-## Notifications
-
-* You can save the specific notifications, and then send it to a specific user. You can send an url action, and if the notification need to send an email of not.
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/12.PNG?raw=true" alt="alt tag" width="600"/>
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/13.PNG?raw=true" alt="alt tag" width="600"/>
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/14.PNG?raw=true" alt="alt tag" width="400"/>
+For detailed instructions and examples, refer to the existing code and structure provided in the repository.
 
 
-## Emails
-
-* You can send emails to a specific user registered, or you can send emails to all users just with one post endpoint.
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/15.PNG?raw=true" alt="alt tag" width="600"/>
-
-  <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true" alt="alt tag" width="400"/>
-
-
-## Documents
-
-* You can save any file into s3 bucket of AWS, with one endpoint, and the reply is an url from aws server just for access it from this url.
-
-<img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true" alt="alt tag" width="600"/>
-
-
-
-
-<br>
 
 # How to programming new endpoints and modules?
 
@@ -542,3 +435,11 @@ CREATE TABLE IF NOT EXISTS `manufactures` (
   ```
 
    * And then run: "npm run dev" for start the server and testing into postman.
+
+
+
+
+
+---
+
+For further details and updates, visit the [GitHub repository](https://github.com/fabian7593/EasyRestApiLand).
