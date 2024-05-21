@@ -1,17 +1,16 @@
 import { Request } from 'express';
-import { Manufactures } from "../../../models_type_orm/entities/Manufactures"
+//import { Manufactures } from "../../../models_type_orm/entities/Manufactures"
 import IAdapterFromBody from '../../Generics/Adapter/IAdapterFromBody';
 
-export default  class UdcAdapter implements IAdapterFromBody{
+export default  class ManufactureAdapter implements IAdapterFromBody{
     req: Request;
 
     constructor(req: Request) {
         this.req = req;
     }
-
     //POST
-    entityFromPostBody() : Manufactures{
-        const entity = new Manufactures();
+    entityFromPostBody() /*: Manufactures*/{
+       /* const entity = new Manufactures();
         entity.name = this.req.body.name;
         entity.city = this.req.body.city || null;
         entity.address = this.req.body.address || null;
@@ -24,15 +23,10 @@ export default  class UdcAdapter implements IAdapterFromBody{
         entity.udcIndustryType = this.req.body.industry_type;
         entity.notes = this.req.body.notes || null;
         entity.createdDate = new Date();
-        return entity;
+        return entity;*/
     }
 
-
-
-
-
-    entityToResponse(entity: Manufactures) : any{
-    
+    entityToResponse(entity: any/*Manufactures*/) : any{
         return  {
             id : entity.id,
             name: entity.name,
@@ -51,21 +45,20 @@ export default  class UdcAdapter implements IAdapterFromBody{
         };
     }
 
-    entitiesToResponse(entities: Manufactures[] | null): any {
+    entitiesToResponse(entities: /*Manufactures[] | */null): any {
         const response: any[] = [];
     
-        if(entities != null){
+        /*if(entities != null){
             for (const entity of entities) {
                 response.push(this.entityToResponse(entity));
             }
-        }
-        
+        }*/
         return response;
     }
     
     //PUT
-    entityFromPutBody() : Manufactures{
-        const entity = new Manufactures();
+    entityFromPutBody() /*: Manufactures*/{
+        /*const entity = new Manufactures();
 
         entity.name = this.req.body.name || null;
         entity.city = this.req.body.city || null;
@@ -80,6 +73,6 @@ export default  class UdcAdapter implements IAdapterFromBody{
         entity.notes = this.req.body.notes || null;
         entity.updatedDate = new Date();
 
-        return entity;
+        return entity;*/
     }
 }

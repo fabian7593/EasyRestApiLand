@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { Manufactures } from '../../../models_type_orm/entities/Manufactures'
+//import { Manufactures } from '../../../models_type_orm/entities/Manufactures'
 import GenericController from "../../Generics/Controller/GenericController";
 import ControllerObject from "../../Objects/ControllerObject";
 import ManufactureAdapter from "./ManufactureAdapter";
@@ -19,7 +19,7 @@ const controllerObj: ControllerObject = {
     controller: "ManufactureController"
 };
 
-const controller = new GenericController(Manufactures, controllerObj);
+/*const controller = new GenericController(Manufactures, controllerObj);
 
 route.get("/manufacture/get", async (req: Request, res: Response) => {
     const requestHandler : RequestHandler = 
@@ -112,6 +112,6 @@ route.delete("/manufacture/delete", async (req: Request, res: Response) => {
                             .build();
 
     controller.delete(requestHandler);
-});
+});*/
 
 export default route;
