@@ -113,7 +113,7 @@ Then add into package.json script, this code ->
 * Copy File ormConfig in the root of the project
   * https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js
 * Run
-  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "" -e mysql -o ./models_type_orm
+  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
 
 <br>
 <br>
@@ -329,10 +329,153 @@ Structure:
   <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/16.PNG?raw=true" alt="alt tag" width="400"/>
 
 
-
 ## Documents
 
 * You can save any file into s3 bucket of AWS, with one endpoint, and the reply is an url from aws server just for access it from this url.
 
 <img src="https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true" alt="alt tag" width="600"/>
-  
+
+
+
+
+<br>
+
+# How to programming new endpoints and modules?
+
+We need to add a CRUD for example table to management the information of manufactures.
+We are going to introduce the programming of this module step by step.
+
+<br>
+Each code that wee need in this example, there is in the repository, in the test folder -> https://github.com/fabian7593/EasyRestApiLand/tree/main/src/Entities/test.
+
+And in the file of db scripting just for testing ->  https://github.com/fabian7593/EasyRestApiLand/blob/main/dbScripting/04_db_scripting_just_for_testing.sql.
+
+NOTE: You need to understand that those example files are not required, in the normal funcionallity of your backend application, we just added this for complete the programming documentation.
+
+<br>
+
+* For this example we need to add some information to Unit Dynamics Central, at the same time, we will learn how can we use the UDC module.
+* We need to insert udc into db, at this form, for example: 
+```bash
+INSERT INTO `units_dynamic_central` (`code`, `name`, `type`, `value1`)
+VALUES
+('AUTOMOTIVE', 'Automotive Industry', 'INDUSTRY_TYPE', 'Automotive'),
+('TEXTILE', 'Textile Industry', 'INDUSTRY_TYPE', 'Textile'),
+('TECHNOLOGY', 'Technology Industry', 'INDUSTRY_TYPE', 'Technology'),
+('FOOD_AND_BEVERAGE', 'Food and Beverage Industry', 'INDUSTRY_TYPE', 'Food and Beverage'),
+('PHARMACEUTICAL', 'Pharmaceutical Industry', 'INDUSTRY_TYPE', 'Pharmaceutical');
+```
+
+* Then, we need to add the screen of manufacture, and the respective role asociated with this screen and its functionallities:
+```bash
+INSERT INTO screens (code, name, description)
+VALUES 
+    ('MANUFACTURE_SCREEN', 'MANUFACTURES', 'SCREEN FOR CREATE MANUFACTURES');
+
+INSERT INTO role_screen (role_code, screen_code, description) VALUES 
+('ADMIN', 'MANUFACTURE_SCREEN', 'Screen for creating MANUFACTURES');
+
+
+INSERT INTO role_functionallity (role_code, func_type, function_code, screen_code, description) VALUES 
+('ADMIN', 'C', 'MANUFACTURE_CREATE', 'MANUFACTURE_SCREEN', 'Create new project'),
+('ADMIN', 'R', 'MANUFACTURE_READ', 'MANUFACTURE_SCREEN', 'Read new project'),
+('ADMIN', 'U', 'MANUFACTURE_UPDATE', 'MANUFACTURE_SCREEN', 'Update new project'),
+('ADMIN', 'D', 'MANUFACTURE_DELETE', 'MANUFACTURE_SCREEN', 'Delete new project');
+```
+
+* Then we need to add the new table of manufactures into DB
+```bash
+DROP TABLE IF EXISTS `manufactures`;
+CREATE TABLE IF NOT EXISTS `manufactures` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `address` VARCHAR(255) DEFAULT NULL,
+    `city` VARCHAR(100) DEFAULT NULL,
+    `state` VARCHAR(100) DEFAULT NULL,
+    `zip_code` VARCHAR(20) DEFAULT NULL,
+    `country_iso_code` VARCHAR(3) DEFAULT NULL,
+    `phone` VARCHAR(20) DEFAULT NULL,
+    `email` VARCHAR(255) DEFAULT NULL,
+    `website` VARCHAR(255) DEFAULT NULL,
+    `is_deleted` TINYINT(1) DEFAULT 0,
+    `udc_industry_type` VARCHAR(100) DEFAULT NULL,
+    `notes` TEXT DEFAULT NULL,
+    `created_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`udc_industry_type`) REFERENCES `units_dynamic_central` (`code`)
+);
+```
+
+* When you added all of those scripts into the db, you need to run the script to generate ORM with DB first, in this case we use ->
+  * typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+   
+* The you can add a folder into entities, in this case with the name "test".
+* And next you need to add to files, "ManufactureAdapter.ts" and "ManufactureRouter.ts".
+  * ManufactureAdapter.ts:
+    * This is a class that implements the Adapter Interface, and need to set it the respective functions into class, for example:
+    
+     ```bash
+     //This method convert from body json, to entity type manufacture, for insert
+     entityFromPostBody() : Manufactures{
+          const entity = new Manufactures();
+          entity.name = this.req.body.name;
+          entity.city = this.req.body.city || null;
+          entity.address = this.req.body.address || null;
+          entity.countryIsoCode = this.req.body.country_iso_code || null;
+          entity.email = this.req.body.email || null;
+          entity.state = this.req.body.state || null;
+          entity.zipCode = this.req.body.zip_code || null;
+          entity.phone = this.req.body.phone || null;
+          entity.website = this.req.body.website || null;
+          entity.udcIndustryType = this.req.body.industry_type;
+          entity.notes = this.req.body.notes || null;
+          entity.createdDate = new Date();
+          return entity;
+      }
+   ```
+
+
+      //These methods convert the entity manufacture to json objecto to show into response
+       entityToResponse(entity: Manufactures) : any{
+           return  {
+               id : entity.id,
+               name: entity.name,
+               address: entity.address,
+               city: entity.city ,
+               state: entity.state,
+               zip_code: entity.zipCode,
+               country_iso_code: entity.countryIsoCode,
+               phone: entity.phone,
+               email: entity.email,
+               website: entity.createdDate,
+               industry_type: entity.udcIndustryType,
+               notes: entity.notes,
+               created_date: entity.createdDate,
+               updated_date: entity.updatedDate
+           };
+       }
+   
+       // this show multiple manufactures
+       entitiesToResponse(entities: Manufactures[] | null): any {
+           const response: any[] = [];
+       
+           if(entities != null){
+               for (const entity of entities) {
+                   response.push(this.entityToResponse(entity));
+               }
+           }
+           return response;
+       }
+    ```
+  * ManufactureRouter.ts (This class have the router for all methods of manufacture CRUD):
+    * We need to set the controller object, and add the functionallities added in the last example of the table role_functionallity, like this ->
+       ```bash
+       const controllerObj: ControllerObject = {
+         create: "MANUFACTURE_CREATE",
+         update: "MANUFACTURE_UPDATE",
+         delete: "MANUFACTURE_DELETE",
+         getAll: "MANUFACTURE_READ",
+         getById: "MANUFACTURE_READ",
+         controller: "ManufactureController"
+       };
+      ```
