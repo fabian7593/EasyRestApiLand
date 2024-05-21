@@ -236,6 +236,7 @@ Import the Postman collection file to test the current endpoints: [Postman Colle
 
 ![Document Management](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/17.PNG?raw=true)
 
+<br><br>
 ## Developing New Endpoints and Modules
 To develop new endpoints, follow these steps:
 
@@ -440,7 +441,7 @@ The example files are located in the repository under the [test folder](https://
 
    You can now test your new endpoints using Postman or any other API testing tool.
 
-** By following these steps, you will have successfully added a new CRUD module for managing manufactures, including all necessary endpoints and database integrations. **
+**By following these steps, you will have successfully added a new CRUD module for managing manufactures, including all necessary endpoints and database integrations.**
 
 
 
