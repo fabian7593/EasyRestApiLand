@@ -12,7 +12,7 @@
     4. [Install TypeScript Packages](#install-typescript-packages)
 4. [Run SQL Scripting](#run-sql-scripting)
 5. [Set Application Settings](#set-application-settings)
-6. [Run the Application](#run-the-application)
+6. [Run Commands](#run-commands)
 7. [Response Structure](#response-structure)
 8. [JSON Files Messages](#json-files-messages)
 9. [Email Templates](#email-templates)
@@ -150,9 +150,21 @@ typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "pas
 Configure the `.env` file for correct endpoint operation. An example `.env` file is provided [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt).
 
 <br><br>
-## Run the Application
+## Run Commands
+
+**Run Application (this is the main command for running the server)**
 ```bash
 npm run dev
+```
+
+**Run DB Test Connection**
+```bash
+npm run connection
+```
+
+**Run Test Send Mail**
+```bash
+npm run mail
 ```
 
 <br><br>
