@@ -309,9 +309,11 @@ The example files are located in the repository under the [test folder](https://
 6. **Implement `ManufactureAdapter.ts`**:
    ```typescript
    // ManufactureAdapter.ts
-   import { Manufactures } from './models/Manufactures';
+    import { Request } from 'express';
+    import { Manufactures } from "../../../models_type_orm/entities/Manufactures"
+    import IAdapterFromBody from '../../Generics/Adapter/IAdapterFromBody';
 
-   class ManufactureAdapter {
+   export default  class ManufactureAdapter implements IAdapterFromBody {
        private req: any;
        constructor(req: any) {
            this.req = req;
@@ -377,6 +379,7 @@ The example files are located in the repository under the [test folder](https://
 
    const route = Router();
 
+   //Instance new Controller Object Class
    const controllerObj: ControllerObject = {
        create: "MANUFACTURE_CREATE",
        update: "MANUFACTURE_UPDATE",
@@ -386,8 +389,13 @@ The example files are located in the repository under the [test folder](https://
        controller: "ManufactureController"
    };
 
+   // New instance of Generic Controller
+   // if you need to change some method of this class, you can create a new Controller extends this GenericController
+   // And then override the methods.
    const controller = new GenericController(Manufactures, controllerObj);
 
+    // Create the route for get manufacture
+   // You can see the ManufactureRouter.ts to see all the CRUD methods
    route.get("/manufacture/get", async (req: Request, res: Response) => {
        const requestHandler = new RequestHandlerBuilder(res, req)
            .setAdapter(new ManufactureAdapter(req))
@@ -414,4 +422,66 @@ The example files are located in the repository under the [test folder](https://
 
    You can now test your new endpoints using Postman or any other API testing tool.
 
-By following these steps, you will have successfully added a new CRUD module for managing manufactures, including all necessary endpoints and database integrations.
+** By following these steps, you will have successfully added a new CRUD module for managing manufactures, including all necessary endpoints and database integrations. **
+
+
+
+<br><br>
+## Explanation of Programming Code:
+
+* **ControllerObject:** We need to set the controller object and add the functionalities added in the last example of the table role_functionality, like this:
+   ```typescript
+   const controllerObj: ControllerObject = {
+     create: "MANUFACTURE_CREATE",
+     update: "MANUFACTURE_UPDATE",
+     delete: "MANUFACTURE_DELETE",
+     getAll: "MANUFACTURE_READ",
+     getById: "MANUFACTURE_READ",
+     controller: "ManufactureController"
+   };
+   ```
+
+### Builder Explanation
+
+* **.setAdapter(new ManufactureAdapter(req))**: This method is required and sends the specific adapter as a param.
+
+* **.setMethod("getManufactureById")**: This is the name of the respective method. We need to set it because all the methods are so generic. It is used for identification in case of an error or something similar.
+
+* **.isValidateWhereByUserId()**: Validates if the table has a user ID. For example, if the table is linked with a user ID, and only this user can change the information of this object.
+
+* **.isValidateRole()**: If the method needs to validate role permissions.
+
+* **.isLogicalRemove()**: If the table has an "is_deleted" field, add this method to perform a logical removal. If not added, the removal is complete in the DB.
+
+* **.setFilters(filters)**: If the endpoint gets multiple responses, you can set filters in the URL params, like this:
+   ```typescript
+   const countryParam: string | null = getUrlParam("country", req) || null;
+   const industryParam: string | null = getUrlParam("industry_type", req) || null;
+
+   const filters: FindManyOptions = {};
+   if (industryParam != null) {
+       filters.where = { ...filters.where, udcIndustryType: industryParam };
+   }
+
+   if (countryParam != null) {
+       filters.where = { ...filters.where, countryIsoCode: countryParam };
+   }
+   ```
+
+* **.setRegexValidation(regexValidationList)**: If the endpoint is POST or PUT, or needs to send something in the body JSON and validate regular expressions, set it like this:
+   ```typescript
+   const regexValidationList: [string, string][] = [
+     ['EMAIL_REGEX', req.body.email as string]
+   ];
+   ```
+
+### Validate Required Fields into body JSON for POST request
+Use the `validateRequiredBodyJson` method found [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/src/Helpers/Validations.ts). 
+Add something like this:
+```typescript
+else if (validateEndPoint == "MANUFACTURE_CREATE") {
+    if (!this.req.body.name || !this.req.body.industry_type) {
+        hasRequiredFields = false;
+    }
+}
+```
