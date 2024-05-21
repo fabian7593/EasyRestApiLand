@@ -525,3 +525,20 @@ CREATE TABLE IF NOT EXISTS `manufactures` (
           ['EMAIL_REGEX', req.body.email as string]
         ];
       ```
+* For validate the required fields into body json for insert entities, use the validateRequiredBodyJson method, into -> https://github.com/fabian7593/EasyRestApiLand/blob/main/src/Helpers/Validations.ts
+  Add into this method, something like this:
+  ```bash
+      else if(validateEndPoint == "MANUFACTURE_CREATE"){
+          if (!this.req.body.name || !this.req.body.industry_type) {
+              hasRequiredFields = false;
+          }
+      }
+  ```
+
+  * And for the last one step, we need to set the router into index.ts, like this:
+  ```bash
+      import ManufactureRouter from './Entities/test/ManufactureRouter';
+      app.use(ManufactureRouter);
+  ```
+
+   * And then run: "npm run dev" for start the server and testing into postman.
