@@ -1,4 +1,4 @@
-# Easy RestApi Land
+# Easy Rest Api Land
 
 [![alt tag](https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png)](https://github.com/fabian7593/EasyRestApiLand)
 
