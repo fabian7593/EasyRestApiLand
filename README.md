@@ -259,9 +259,11 @@ The example files are located in the repository under the [test folder](https://
 <br>
 
 ### Step-by-Step Example
+Add example of manufacture, just for learning how can you add new modules.
+All of those steps is for explain that.
 
 1. **Add Information to Unit Dynamics Central (UDC)**:
-   Insert UDC data into the database:
+   Insert UDC data into the database (this data info is for use different types of industry type manufacture example):
    ```sql
    INSERT INTO `units_dynamic_central` (`code`, `name`, `type`, `value1`)
    VALUES
@@ -273,6 +275,7 @@ The example files are located in the repository under the [test folder](https://
    ```
 
 2. **Add the Manufacture Screen and Role**:
+    Add screen of manufacture, and linked the role and the screen, as well add the functionallities by role.
    ```sql
    INSERT INTO screens (code, name, description)
    VALUES 
@@ -288,7 +291,7 @@ The example files are located in the repository under the [test folder](https://
    ('ADMIN', 'D', 'MANUFACTURE_DELETE', 'MANUFACTURE_SCREEN', 'Delete new project');
    ```
 
-3. **Add the Manufactures Table to the Database**:
+3. **Add the Example Manufactures Table to the Database**:
    ```sql
    DROP TABLE IF EXISTS `manufactures`;
    CREATE TABLE IF NOT EXISTS `manufactures` (
