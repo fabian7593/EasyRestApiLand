@@ -621,3 +621,35 @@ else if (validateEndPoint == "MANUFACTURE_CREATE") {
     }
 }
 ```
+
+## Current Version
+* **v1** `25/May/2024`
+
+<br>
+
+## Credits
+**Author**
+[Fabián Rosales - Frosquivel Developer](https://github.com/fabian7593)
+
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/github-logo.png)](https://github.com/fabian7593)
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/linkedin.png)]([https://www.linkedin.com/in/fabian-rosales-esquivel-698893106/](https://www.linkedin.com/in/fabian-rosales-mobiledev/))
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/youtube.png)](https://www.youtube.com/channel/UCJnvvHb_vwMwbnZWplkHIfw)
+
+<br>
+
+## License
+Copyright 2024 Fabian Rosales
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+<br><br>
+
