@@ -12,7 +12,7 @@
     4. [Install TypeScript Packages](#install-typescript-packages)
 4. [Run SQL Scripting](#run-sql-scripting)
 5. [Set Application Settings](#set-application-settings)
-6. [Run the Application](#run-the-application)
+6. [Run Commands](#run-commands)
 7. [Response Structure](#response-structure)
 8. [JSON Files Messages](#json-files-messages)
 9. [Email Templates](#email-templates)
@@ -143,16 +143,111 @@ npm install -g typeorm-model-generator@0.4.6
 
 Copy the [ormConfig file](https://github.com/fabian7593/EasyRestApiLand/blob/main/ormconfig.js) to the root of the project and run:
 ```bash
-typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+typeorm-model-generator -h localhost -d easy_api_land_db -p 3306 -u root -x "password" -e mysql -o ./models_type_orm
 ```
 <br><br>
 ## Set Application Settings
 Configure the `.env` file for correct endpoint operation. An example `.env` file is provided [here](https://github.com/fabian7593/EasyRestApiLand/blob/main/example.env.txt).
 
+```bash
+# Company information 
+COMPANY_NAME="Easy Rest Api Land"
+
+# This logo is for show into the emails 
+COMPANY_LOGO=https://github.com/fabian7593/EasyRestApiLand/blob/main/00/logo.png
+
+# These are the subjects for register and forgot password
+COMPANY_REGISTER_SUBJECT="Account Verification"
+COMPANY_FORGOT_PASS_SUBJECT="Forgot Password"
+
+#This is the host for confirmation register, I recomended to set the url of the backend project
+COMPANY_HOST="http://localhost:3000/"
+
+# This is for build the url for vefiry forgot password
+COMPANY_FRONT_END_HOST="http://localhost:3000/"
+COMPANY_RESET_PASS_FRONT_END_URL="password_reset/"
+
+#This is the color of the emails titles
+COMPANY_MAIN_COLOR="#6666FF"
+
+# this is the domain of the email logo
+COMPANY_DOMAIN="https://www.example.com"
+
+#This is the security api key if the endpoints require this, in the header you need to set -> x-api-key
+COMPANY_SECRET_API_KEY="8170fcb2-ef45-4173-8a37-f682d38ddae9"
+#If this variable is 1, the endpoints validate the x-api-key
+COMPANY_HAS_SECRET_API_KEY=0
+
+#This is the port of this server node backend
+SERVER_PORT=3000
+
+#DB Information on connection string
+DB_PORT=3306
+DB_HOST="localhost"
+DB_USER="root"
+DB_PASSWORD=""
+DB_NAME="easy_api_land_db"
+DB_CONNECTION_LIMIT=150
+
+#JWT - All of JWT Tokens of login, refresh, forgot password and register token.
+JWT_EXPIRE=30000s
+JWT_SECRET_KEY=f749b45a-06e9-4ba1-a842-630184b443f6
+
+#JWT REFRESH TOKEN
+JWT_REFRESH_EXPIRE=1d
+JWT_REFRESH_SECRET_KEY=44e7d167-fd16-41f4-9e48-e6218fbf0a41
+
+#JWT forgot password
+JWT_FORGOT_PASSWORD_EXPIRE=900s
+JWT_FORGOT_PASSWORD_TOKEN=f749b45a-35a1-77ty-12we-630184b443f6
+
+#JWT Register Token
+JWT_REGISTER_TOKEN=44fr2167-1oi8-55ht-3ew1-630184b443f6
+
+
+#Password Salt
+SALT=550e8400e29b41d4a716446655412345
+
+#Is debugging active, not validate the regular expressions and show all console logs.
+IS_DEBUGGING=0
+
+# General Settings
+# This settings is the max numbers of fail logins, and page size by default if not set it on url params.
+FAIL_LOGIN_MAX_NUMBER=3
+PAGE_SIZE=3000
+PAGE_OFFSET=1
+
+
+# AWS S3 File Storage Information
+BUCKET_NAME="bucket-name"
+BUCKET_REGION="us-east-2"
+#configure IAM AWS
+ACCESS_KEY="AKIAZQ3DRSPRNUX12345"
+SECRET_ACCESS_KEY=""
+
+# Emails information - This information is for node mailer
+EMAIL_SERVICE=gmail
+EMAIL_AUTH_USER="test@gmail.com"
+EMAIL_AUTH_PASSWORD="test_password"
+EMAIL_FROM="test@gmail.com"
+```
+
 <br><br>
-## Run the Application
+## Run Commands
+
+**Run Application (this is the main command for running the server)**
 ```bash
 npm run dev
+```
+
+**Run DB Test Connection**
+```bash
+npm run connection
+```
+
+**Run Test Send Mail**
+```bash
+npm run mail
 ```
 
 <br><br>
@@ -334,7 +429,7 @@ All of those steps is for explain that.
 
 4. **Generate ORM with DB First**:
    ```bash
-   typeorm-model-generator -h localhost -d easy_api_land_db -p 3307 -u root -x "password" -e mysql -o ./models_type_orm
+   typeorm-model-generator -h localhost -d easy_api_land_db -p 3306 -u root -x "password" -e mysql -o ./models_type_orm
    ```
 
 5. **Add Folder and Files for the Module**:
@@ -526,3 +621,35 @@ else if (validateEndPoint == "MANUFACTURE_CREATE") {
     }
 }
 ```
+
+## Current Version
+* **v1** `25/May/2024`
+
+<br>
+
+## Credits
+**Author**
+[Fabián Rosales - Frosquivel Developer](https://github.com/fabian7593)
+
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/github-logo.png)](https://github.com/fabian7593)
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/linkedin.png)]([https://www.linkedin.com/in/fabian-rosales-esquivel-698893106/](https://www.linkedin.com/in/fabian-rosales-mobiledev/))
+[![alt tag](https://raw.githubusercontent.com/fabian7593/CountryAPI/master/Files/imgsReadme/youtube.png)](https://www.youtube.com/channel/UCJnvvHb_vwMwbnZWplkHIfw)
+
+<br>
+
+## License
+Copyright 2024 Fabian Rosales
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+<br><br>
+
