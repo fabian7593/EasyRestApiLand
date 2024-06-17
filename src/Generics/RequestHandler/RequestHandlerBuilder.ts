@@ -25,12 +25,19 @@ export default class RequestHandlerBuilder implements IRequestHandlerBuilder {
     private requireValidWhereByUserId: boolean = false;
     //the list of regular expression
     private regexValidatorList: [string, string][];
+    //List of required fields
+    private requiredFieldsList: Array<string> 
     //the filters for the gets
     private filters: FindManyOptions;
 
     constructor(res: Response, req: Request) {
         this.res = res;
         this.req = req;
+    }
+
+    setRequiredFiles(requiredFieldsList: Array<string>): IRequestHandlerBuilder {
+        this.requiredFieldsList = requiredFieldsList;
+        return this;
     }
 
     //Set filters for get many into Type ORM
@@ -82,6 +89,7 @@ export default class RequestHandlerBuilder implements IRequestHandlerBuilder {
                                   this.requireLogicalRemove,
                                   this.requireValidWhereByUserId,
                                   this.regexValidatorList,
+                                  this.requiredFieldsList,
                                   this.filters );
     }
 }

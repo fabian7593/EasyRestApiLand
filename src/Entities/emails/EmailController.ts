@@ -23,7 +23,7 @@ export default  class EmailController extends GenericController{
         try{
             const repository = new UserRepository();
             const roleRepository = new RoleRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
 
             if(reqHandler.getNeedValidateRole()){
@@ -85,7 +85,7 @@ export default  class EmailController extends GenericController{
         try{
             const repository = new UserRepository();
             const roleRepository = new RoleRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
            
 

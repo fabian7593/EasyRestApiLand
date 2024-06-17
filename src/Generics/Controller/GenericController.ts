@@ -50,7 +50,7 @@ export default  class GenericController implements IGenericController{
             //This is for validate role
             const roleRepository = new RoleRepository();
             //This is for do validations
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             //This calls the jwt data into JWTObject
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
 
@@ -108,7 +108,7 @@ export default  class GenericController implements IGenericController{
              //This is for validate role
              const roleRepository = new RoleRepository();
              //This is for do validations
-             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
              //This calls the jwt data into JWTObject
              const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
              //get the id from URL params
@@ -181,7 +181,7 @@ export default  class GenericController implements IGenericController{
              //This is for validate role
              const roleRepository = new RoleRepository();
              //This is for do validations
-             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
              //This calls the jwt data into JWTObject
              const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
              //get the id from URL params
@@ -250,7 +250,7 @@ export default  class GenericController implements IGenericController{
              //This is for validate role
              const roleRepository = new RoleRepository();
              //This is for do validations
-             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
              //This calls the jwt data into JWTObject
              const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
              //get the id from URL params
@@ -313,7 +313,7 @@ export default  class GenericController implements IGenericController{
              //This is for validate role
              const roleRepository = new RoleRepository();
              //This is for do validations
-             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+             const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
              //This calls the jwt data into JWTObject
              const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
              //get the code for Url Params

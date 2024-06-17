@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { responseStruct } from "../Objects/BodyResObject"
 import { getStatus, getMessage, getRegex } from "../Utils/jsonUtils"
 import JWTObject from '../Objects/JWTObject';
+import HttpAction from '../Helpers/HttpAction';
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -12,10 +13,12 @@ require('dotenv').config();
 export default class Validations{
     req: Request;
     res: Response;
+    httpAction: HttpAction;
 
-    constructor(req: Request, res: Response) {
+    constructor(req: Request, res: Response, httpAction: HttpAction) {
         this.req = req;
         this.res = res;
+        this.httpAction = httpAction;
     }
 
     //This function validate the required body json by endpoint code
@@ -101,6 +104,28 @@ export default class Validations{
         }
     }
 
+    //This method has the logic of validation required body fields
+    public validateRequiredFields(listRequiredFields:  string[] | null): Boolean{
+       
+        let haveAllRequiredFields = true;
+
+        if(listRequiredFields != null){
+            listRequiredFields.forEach((requireField) => {
+                if (requireField == undefined) {
+                    haveAllRequiredFields = false;
+                }
+            });
+        }else{
+            this.httpAction.validationError("INCOMPLETE_BODY_REQUEST");
+        }
+
+        if (!haveAllRequiredFields) {
+            this.httpAction.validationError("REQUIRED_FIELDS");
+        }
+
+        return haveAllRequiredFields;
+    }
+
     //This function validate multiple Regex
     public validateMultipleRegex (listRegex: [string, string][] | null)
     {
@@ -140,11 +165,7 @@ export default class Validations{
             // Valid format
             return null;
         } else {
-
-            const status = getStatus("REGEX");
-            return this.res.status(status.httpStatus).json(
-                responseStruct(status, null, message)
-            );
+            this.httpAction.dynamicError("REGEX", message);
         }
     }
  
@@ -153,29 +174,16 @@ export default class Validations{
     //This function validate if exist the jwt and if is required and has authorization to do this action.
     //This fucntion is used on Start Middleware
     public validateRequireJWT(){
-
-        let varReturn = null; 
+        let returnJwt = null; 
     
         try{
             if (!this.req.headers) {
-              
-                const status = getStatus("VALIDATIONS");
-                this.res.status(status.httpStatus).json(
-                    responseStruct(status, null, getMessage("INCOMPLETE_HEADER_REQUEST"))
-                );
-    
-                varReturn = status.httpStatus;
+                this.httpAction.validationError("INCOMPLETE_HEADER_REQUEST");
             }else{
         
                 //validation of authorization
                 if (!this.req.headers['authorization']) {
-
-                    const status = getStatus("VALIDATIONS");
-                    this.res.status(status.httpStatus).json(
-                        responseStruct(status, null, getMessage("INCOMPLETE_HEADER_REQUEST"))
-                    );
-    
-                    varReturn = status.httpStatus;
+                    this.httpAction.validationError("INCOMPLETE_HEADER_REQUEST");
                 }else{
         
                     //validate a assigned secret key with the DB
@@ -183,31 +191,17 @@ export default class Validations{
                   
                     try {
                         const decoded = jwt.verify(jwtAuth, process.env.JWT_SECRET_KEY); // Verifica el token usando tu clave secreta
-                        varReturn = decoded;
+                        returnJwt = decoded;
                     } catch (error) {
-
-                        const status = getStatus("UNAUTHORIZED");
-                        this.res.status(status.httpStatus).json(
-                            responseStruct(status, null, getMessage("INVALID_TOKEN"))
-                        );
-    
-                        varReturn = status.httpStatus;
+                        this.httpAction.unauthorizedError("INVALID_TOKEN");
                     }
                 }
             }
         }catch(error : any){
-           
-            const status = getStatus("ERROR");
-            this.res.status(status.httpStatus).json(
-                responseStruct(status, null, error.message)
-            );
-            
-            varReturn = null;
+            this.httpAction.generalError(error);
         }
     
-        if (varReturn === 401 || varReturn == 400 ) { varReturn = null; }
-    
-        return varReturn;
+        return returnJwt;
     }
 
 
@@ -219,23 +213,12 @@ export default class Validations{
     
         try{
             if (!this.req.headers) {
-              
-                const status = getStatus("VALIDATIONS");
-                this.res.status(status.httpStatus).json(
-                    responseStruct(status, null, getMessage("INCOMPLETE_HEADER_REQUEST"))
-                );
-    
-                varReturn = status.httpStatus;
+                this.httpAction.validationError("INCOMPLETE_HEADER_REQUEST");
             }else{
         
                 //validation of authorization
                 if (!this.req.headers['x-api-key']) {
-
-                    const status = getStatus("VALIDATIONS");
-                    this.res.status(status.httpStatus).json(
-                        responseStruct(status, null, getMessage("INCOMPLETE_HEADER_REQUEST"))
-                    );
-                    varReturn = status.httpStatus;
+                    this.httpAction.validationError("INCOMPLETE_HEADER_REQUEST");
                 }else{
         
                     //validate a assigned secret key with the DB
@@ -245,35 +228,18 @@ export default class Validations{
                         if(xApiKey == process.env.COMPANY_SECRET_API_KEY){
                             varReturn = true;
                         }else{
-                            const status = getStatus("UNAUTHORIZED");
-                            this.res.status(status.httpStatus).json(
-                                responseStruct(status, null, getMessage("INVALID_API_KEY"))
-                            );
-                            varReturn = status.httpStatus;
+                            this.httpAction.unauthorizedError("INVALID_API_KEY");
                         }
                         
                     } catch (error) {
-
-                        const status = getStatus("UNAUTHORIZED");
-                        this.res.status(status.httpStatus).json(
-                            responseStruct(status, null, getMessage("INVALID_API_KEY"))
-                        );
-    
-                        varReturn = status.httpStatus;
+                        this.httpAction.unauthorizedError("INVALID_API_KEY");
                     }
                 }
             }
         }catch(error : any){
-           
-            const status = getStatus("ERROR");
-            this.res.status(status.httpStatus).json(
-                responseStruct(status, null, error.message)
-            );
-            varReturn = null;
+            this.httpAction.generalError(error);
         }
     
-
-        if (varReturn === 401 || varReturn == 400 ) { varReturn = null; }
         return varReturn;
     }
 

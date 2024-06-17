@@ -14,10 +14,14 @@ export default class HttpAction{
     controllerName: string;
     methodName: string;
 
-    constructor(res: Response, controllerName: string, methodName: string) {
+    constructor(res: Response, controllerName: string, methodName: string = "") {
         this.res = res;
         this.controllerName = controllerName;
         this.methodName = methodName;
+
+        if(methodName == ""){
+            methodName = controllerName;
+        }
     }
 
     getHtml(htmlContent : string){
@@ -81,5 +85,13 @@ export default class HttpAction{
       );
     }
 
+    validationError(errorName:string){
+        console.log("validation");
+        const status = getStatus("VALIDATIONS");
+        const message = getMessage(errorName);
+        return this.res.status(status.httpStatus).json(
+            responseStruct(status, null, message)
+        );
+      }
 }
 

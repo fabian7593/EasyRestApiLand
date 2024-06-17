@@ -27,7 +27,7 @@ export default  class DocumentController extends GenericController{
     
         try{
             const repository = new GenericRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const roleRepository = new RoleRepository();
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
 
@@ -81,7 +81,7 @@ export default  class DocumentController extends GenericController{
         try{
             const repository = new GenericRepository();
             const roleRepository = new RoleRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
             const id = validation.validateIdFromQuery();
             if(id == null){

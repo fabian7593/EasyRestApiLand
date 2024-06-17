@@ -16,6 +16,7 @@ export default class RequestHandler {
     private requireLogicalRemove: boolean = false;
     private requireValidWhereByUserId: boolean = false;
     private regexValidatorList: [string, string][] | null = null;
+    private requiredFieldsList: Array<string> | null = null;
     private filters: FindManyOptions | null = null;
 
     constructor(res: Response, req: Request, 
@@ -25,6 +26,7 @@ export default class RequestHandler {
                 requireLogicalRemove: boolean,
                 requireValidWhereByUserId: boolean,
                 regexValidatorList: [string, string][] | null,
+                requiredFieldsList: Array<string> | null,
                 filters: FindManyOptions) {
         this.res = res;
         this.req = req;
@@ -34,6 +36,7 @@ export default class RequestHandler {
         this.requireLogicalRemove = requireLogicalRemove;
         this.requireValidWhereByUserId = requireValidWhereByUserId;
         this.regexValidatorList = regexValidatorList;
+        this.requiredFieldsList = requiredFieldsList;
         this.filters = filters;
     }
 
@@ -68,6 +71,10 @@ export default class RequestHandler {
 
     getRegexValidatorList(): [string, string][] | null {
         return this.regexValidatorList;
+    }
+
+    getRequiredFieldsList(): Array<string> | null {
+        return this.requiredFieldsList;
     }
 
     getFilters(): FindManyOptions | null {

@@ -77,11 +77,17 @@ route.post("/user/register", async (req: Request, res: Response) => {
         ['PASSWORD_REQUIRED_REGEX', req.body.password as string]
     ];
 
+    const requiredBodyList:  Array<string> = 
+                            [req.body.first_name, req.body.last_name, 
+                             req.body.email, req.body.password, 
+                             req.body.role_code];
+
     const requestHandler : RequestHandler = 
     new RequestHandlerBuilder(res,req)
         .setAdapter(new UserAdapter(req))
         .setMethod("registerUser")
         .setRegexValidation(regexValidationList)
+        .setRequiredFiles(requiredBodyList)
         .build();
 
     controller.register(requestHandler);

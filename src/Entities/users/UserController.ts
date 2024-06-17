@@ -44,7 +44,7 @@ export default  class UserController extends GenericController{
     
         try{
             const repository = new GenericRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const roleRepository = new RoleRepository();
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
             const id = validation.validateIdFromQueryUsers(jwtData);
@@ -91,7 +91,7 @@ export default  class UserController extends GenericController{
     
         try{
             const repository = new GenericRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             const roleRepository = new RoleRepository();
             const jwtData : JWTObject = reqHandler.getRequest().app.locals.jwtData;
 
@@ -101,6 +101,7 @@ export default  class UserController extends GenericController{
                     return httpExec.unauthorizedError("ROLE_AUTH_ERROR");
                 }
             }
+
     
             //validate body json
             if(validation.validateRequiredBodyJson(this.controllerObj.create) != null){
@@ -141,15 +142,16 @@ export default  class UserController extends GenericController{
     
         try{
             const repository = new GenericRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
-
-            //validate body json
-            if(validation.validateRequiredBodyJson(this.controllerObj.create) != null){
-                return;
-            }
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
 
             //Get data From Body
             const userBody = reqHandler.getAdapter().entityFromPostBody();
+
+            if(reqHandler.getRequiredFieldsList() != null){
+                if(!validation.validateRequiredFields(reqHandler.getRequiredFieldsList())){
+                    return;
+                }
+            }
     
             if(reqHandler.getRegexValidatorList() != null){
                 if(validation.validateMultipleRegex(reqHandler.getRegexValidatorList()) != null){
@@ -187,6 +189,8 @@ export default  class UserController extends GenericController{
                 return await httpExec.databaseError(error);
             }
         }catch(error : any){
+
+            console.log(error.message);
             return await httpExec.generalError(error);
         }
     }
@@ -200,7 +204,7 @@ export default  class UserController extends GenericController{
         try{
             const userAdapter = new UserAdapter(reqHandler.getRequest());
             const repository = new UserRepository();
-            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse());
+            const validation = new Validations(reqHandler.getRequest(), reqHandler.getResponse(), httpExec);
             
             //validate body json
             if(validation.validateRequiredBodyJson(validateRequiredBodyJsonName) != null){
@@ -390,19 +394,6 @@ export default  class UserController extends GenericController{
             }
 
             return reqHandler.getResponse().redirect(process.env.COMPANY_RESET_PASS_FRONT_END_URL + forgotPassToken);
-            //return httpExec.successAction(null, "VALID_TOKEN_SUCCESS");
-
-          /*  const user = await repository.getUserByEmailParam(email!);
-
-            if(user != undefined && user != null){
-
-                user.password = encryptPassword(password, process.env.SALT!)!;
-                await repository.update(Users, user.id, user, reqHandler.getNeedLogicalRemove());
-                return httpExec.successAction(reqHandler.getAdapter().entityToResponse(user), successMessage);
-            }else{
-                return httpExec.dynamicError("NOT_FOUND", getMessage("EMAIL_NOT_EXISTS_ERROR"));
-            }*/
-            
         } catch(error : any){
             return await httpExec.generalError(error);
         }
@@ -440,5 +431,4 @@ export default  class UserController extends GenericController{
             return await httpExec.generalError(error);
         }
     }
-
 }

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Validations from "../Helpers/Validations";
 import JWTObject from '../Objects/JWTObject';
+import HttpAction from '../Helpers/HttpAction';
 require('dotenv').config();
 
 /*
@@ -8,10 +9,12 @@ require('dotenv').config();
     You can validate the autorization rest in some paths of the appliation rest
 */
 function StartMiddleware(req : Request, res: Response, next: NextFunction) {
-    const validation = new Validations(req, res);
+    const httpExec = new HttpAction(res, "StartMiddleware");
+    const validation = new Validations(req, res, httpExec);
     let jwtData : JWTObject | null = null;
     let nextMethod = false;
     
+    //The endpoints that doesnt needs JWT
     if (req.path != '/user/login' && 
         req.path != '/user/add' &&
         !req.path.includes('refresh_token') &&
